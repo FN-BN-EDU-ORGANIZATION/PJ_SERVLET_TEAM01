@@ -1,0 +1,8 @@
+package Controller.music;
+
+import Domain1.Service.MusicService;
+
+public class MusicSearchController {
+	
+	private MusicService service = MusicService.getInstance();
+}

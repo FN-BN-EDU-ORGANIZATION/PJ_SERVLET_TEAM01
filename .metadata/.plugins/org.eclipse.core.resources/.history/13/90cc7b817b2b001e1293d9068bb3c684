@@ -1,0 +1,9 @@
+package Controller;
+
+import java.util.Map;
+
+public interface SubController {
+
+	void execute(HttpServletRequest req, HttpServletResponse resp);
+
+}
