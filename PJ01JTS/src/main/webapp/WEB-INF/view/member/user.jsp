@@ -12,7 +12,7 @@ ID : ${id} <br/>
 NAME : ${name} <br />
 ADDR : ${addr} <br />
 PHONE : ${phone} <br />
-<button onclick = "location.href='/member/update.do'">정보수정</button>
+<button onclick = "location.href='${pageContext.request.contextPath}/member/update.do'">정보수정</button>
 
 </body>
 </html>
