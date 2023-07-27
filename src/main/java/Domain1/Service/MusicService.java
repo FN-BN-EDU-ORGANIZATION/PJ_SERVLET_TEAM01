@@ -53,7 +53,8 @@ public class MusicService {
 		List<MusicDto> list = new ArrayList();
 		try {
 			String apiKey = "354ad741231e3c7ae853e84460461072";
-			String encodedTrack = URLEncoder.encode(searchText, "UTF-8");
+//			String encodedTrack = URLEncoder.encode(searchText, "UTF-8");
+			String encodedTrack = searchText;
 
 			String apiUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + encodedTrack
 					+ "&limit=300&api_key=" + apiKey + "&format=json";
