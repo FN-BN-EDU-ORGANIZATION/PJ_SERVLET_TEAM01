@@ -14,7 +14,11 @@
 	Role : ${ROLE} <br />
 	<hr />
 
-
+	<!-- 나의 메뉴이동 -->
+<c:if test="${not empty ROLE}">
+	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
+</c:if>
+	
 	<div>
 		<div class="search_block">
 			<input type="text" placeholder="keyword"
