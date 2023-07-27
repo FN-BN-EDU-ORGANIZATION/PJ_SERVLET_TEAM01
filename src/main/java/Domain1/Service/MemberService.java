@@ -3,6 +3,8 @@ package Domain1.Service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import Domain1.Dto.MemberDto;
 
 public interface MemberService {
@@ -26,7 +28,7 @@ public interface MemberService {
 	boolean memberDelete(String id, String sid) throws Exception;
 
 	//로그인
-	Map<String, Object> login(String id, String pw) throws Exception;
+	boolean login(HttpServletRequest req) throws Exception;
 
 	// 검색 기록 추가
 	List<String> addSearchHistory(String memberId, String searchText);
