@@ -60,10 +60,30 @@ MSG : <span class="add_msg"></span>
 	<a href="javascript:history.go(-1)">이전으로</a>
 	
 	<form action="member/delete.do" method="post">
-    <input type="text" name="id" placeholder="사용자 검색">
-    <input type="submit" value="삭제">
-</form>
-</form>
+    	<input type="text" name="id" placeholder="사용자 검색">
+    	<input type="submit" value="삭제" onclick="submitForm()">
+	</form>
 </div>
+
+<%-- <c:if test="${not empty deleteMessage}">
+	<p>${deleteMessage }</p>
+</c:if> --%>
+
+<script>
+function submitForm(event) {
+	alert("삭제되었다")
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
