@@ -37,8 +37,8 @@ public class FrontController extends HttpServlet{
 		
 	
 		//member.auth
-				map.put(projectPath+"/login.do", new LoginController());		
-				map.put(projectPath+"/logout.do", new LogoutController());
+		map.put(projectPath+"/login.do", new LoginController());		
+		map.put(projectPath+"/logout.do", new LogoutController());
 				
 		//main
 		map.put(projectPath+"/main.do",new MainController());		
@@ -47,7 +47,8 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/music/search.do", new MusicSearchController());
 		map.put(projectPath + "/music/openurl.do", new MusicOpenurlController());
 		
-		
+		//mypage
+		map.put(projectPath + "/mypage.do", new MemberPageController());
 		
 		
 		map.put("/qna", new QnAController());

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,16 +13,28 @@
 	Account : ${ID} <br /> 
 	Role : ${ROLE} <br />
 	<hr />
+	
+	
+	<div class="history" id="historySection">
+		<h3>ê²€ìƒ‰ ë‚´ì—­ ì¡°íšŒ</h3>
+		<button class=history_btn>ì¡°íšŒí•˜ê¸°</button>
+		<div class="historyList"></div>
+	</div>
+	
+	
+	<hr />
+
+
 
 
 	<div>
 		<div class="search_block">
 			<input type="text" id="searchInput" placeholder="keyword"
-				style="width: 1500px; margin-bottom: 10px;"  />
-			<button class="search_btn">°Ë»ö</button>
+				style="width: 1500px; margin-bottom: 10px;" />
+			<button class="search_btn">ê²€ìƒ‰</button>
 		</div>
 		<div class="show_block"
-			style="width: 1600px; height: 700px; border: 1px solid; overflow: auto;">
+			style="width: 1600px; height: 500px; border: 1px solid; overflow: auto;">
 			<table>
 				<tr>
 					<th>Name</th>
@@ -32,15 +44,17 @@
 			</table>
 		</div>
 	</div>
-	
-	
-<hr/>
-<c:if test="${empty ROLE}">
-	<a href=<c:url value="/login.do" /> >LOGIN</a></br>
-</c:if>
-<c:if test="${not empty ROLE}">
-	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
-</c:if>
+
+
+	<hr />
+	<c:if test="${empty ROLE}">
+		<a href=<c:url value="/login.do" />>LOGIN</a>
+		</br>
+	</c:if>
+	<c:if test="${not empty ROLE}">
+		<a href=<c:url value="/logout.do" />>LOGOUT</a>
+		</br>
+	</c:if>
 
 
 
@@ -60,17 +74,17 @@
 		//const show_block_el = document.querySelector('.show_block');
 		const table_el = document.querySelector('.show_block table');
 		
-		// ÀÌÀü °Ë»ö °á°ú¸¦ Áö¿ò
+		// ì´ì „ ê²€ìƒ‰ ê²°ê³¼ë¥¼ ì§€ì›€
     	//show_block_el.innerHTML = '';
 		table_el.innerHTML = '<tr><th>Name</th><th>Artist</th><th>URL</th></tr>';
     
 		
-		 // input ¿ä¼Ò¿¡¼­ °Ë»ö¾î¸¦ °¡Á®¿È
+		 // input ìš”ì†Œì—ì„œ ê²€ìƒ‰ì–´ë¥¼ ê°€ì ¸ì˜´
     	const searchText = document.querySelector('input[type="text"]').value;
     
 		
 		axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do",{
-			params: { searchText: searchText } // °Ë»ö¾î¸¦ ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş
+			params: { searchText: searchText } // ê²€ìƒ‰ì–´ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
 		})
 		.then(response=>{ 
 			const list = response.data;
@@ -107,31 +121,31 @@
 	            table_el.appendChild(row);
 			})
 			
-			})		//¼º°ø½Ã Ã³¸®·ÎÁ÷
-		.catch(error=>{alert("fail..!");})		//½ÇÆĞ½Ã Ã³¸®·ÎÁ÷
+			})		//ì„±ê³µì‹œ ì²˜ë¦¬ë¡œì§
+		.catch(error=>{alert("fail..!");})		//ì‹¤íŒ¨ì‹œ ì²˜ë¦¬ë¡œì§
 		
 	})
 	
 	search_input_el.addEventListener('keydown', function (event) {
 		const projectPath = '${pageContext.request.contextPath}';
 		const ServerPort = '${pageContext.request.serverPort}';
-		console.log("È®ÀÎ : " ,typeof event.keyCode);
+		console.log("í™•ì¸ : " ,typeof event.keyCode);
 		if (event.keyCode === 13) {
 			
 			//const show_block_el = document.querySelector('.show_block');
 			const table_el = document.querySelector('.show_block table');
 			
-			// ÀÌÀü °Ë»ö °á°ú¸¦ Áö¿ò
+			// ì´ì „ ê²€ìƒ‰ ê²°ê³¼ë¥¼ ì§€ì›€
 	    	//show_block_el.innerHTML = '';
 			table_el.innerHTML = '<tr><th>Name</th><th>Artist</th><th>URL</th></tr>';
 	    
 			
-			 // input ¿ä¼Ò¿¡¼­ °Ë»ö¾î¸¦ °¡Á®¿È
+			 // input ìš”ì†Œì—ì„œ ê²€ìƒ‰ì–´ë¥¼ ê°€ì ¸ì˜´
 	    	const searchText = document.querySelector('input[type="text"]').value;
 	    
 			
 			axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do",{
-				params: { searchText: searchText } // °Ë»ö¾î¸¦ ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş
+				params: { searchText: searchText } // ê²€ìƒ‰ì–´ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
 			})
 			.then(response=>{ 
 				const list = response.data;
@@ -164,6 +178,22 @@
 			.catch(error=>{alert("fail..!");})
 		}
 	});
+	
+	const historyBtn = document.querySelector('.history_btn');
+	const historyList = document.querySelector('.historyList');
+	
+	historyBtn.addEventListener('click', function() {
+	    const searchText = searchInput.value.trim();
+	    if (searchText !== '') {
+	      const historyItem = document.createElement('div');
+	      historyItem.classList.add('history_item');
+	      historyItem.innerText = searchText;
+	      historyList.appendChild(historyItem);
+
+	      // Clear the search input after adding to history
+	      searchInput.value = '';
+	    }
+	  });
 	
 </script>
 
