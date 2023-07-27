@@ -83,6 +83,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 	}
 	@Override
 	public int update(MemberDto dto) throws Exception{
+		System.out.println("MemberDaoImpl's update : " + dto.getId());
 		pstmt = conn.prepareStatement("update tbl_member set pw=?,name=?,addr=?,phone=?,role=? where id=?");
 		pstmt.setString(1, dto.getPw());
 		pstmt.setString(2, dto.getName());

@@ -20,9 +20,11 @@ public class ConnectionPool {
 		url = "jdbc:mysql://localhost:3306/musicdb";
 		
 		try {
+			if(conn==null) {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, id, pw);
-			
+			System.out.println("ConnectionPool Connection 생성");
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

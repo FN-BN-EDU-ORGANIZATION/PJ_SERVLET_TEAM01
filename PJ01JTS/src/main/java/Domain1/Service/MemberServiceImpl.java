@@ -1,10 +1,11 @@
 package Domain1.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import Domain1.Dao.MemberDao;
 import Domain1.Dao.MemberDaoImpl;
@@ -30,8 +31,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		public MemberServiceImpl() {
 			dao = MemberDaoImpl.getInstance();
-			sessionMap = new HashMap();
-			memberSearchHistoryMap = new HashMap<>();
 		}
 		//회원 가입하기
 		@Override
@@ -76,6 +75,9 @@ public class MemberServiceImpl implements MemberService {
 			}
 			return false;
 		}
+		
+		
+		
 		//회원 삭제하기
 		@Override
 		public boolean memberDelete(String id, String sid) throws Exception{
@@ -91,32 +93,28 @@ public class MemberServiceImpl implements MemberService {
 		}
 		//로그인
 		@Override
-		public Map<String,Object> login(String id, String pw) throws Exception{
+		public boolean login(HttpServletRequest req) throws Exception{
+			
+			String id = (String) req.getParameter("id");
+			String pw = (String) req.getParameter("pw");
 			//1 ID/PW 체크 -> Dao 전달받은 id와 일치하는 정보를 가져와서 pw일치 확인
 			MemberDto dbDto = dao.select(id);
 			if(dbDto==null) {
-				System.out.println("[ERROR] Login Fail.. 아이디가 일치하지 않습니다");
-				return null;
+				System.out.println("[ERROR] Login Fail.. 아이디가 일치하지 않습니다.");
+				req.setAttribute("msg", "[ERROR] Login Fail.. 아이디가 일치하지 않습니다.");
+				return false;
 			}
 			if(!pw.equals(dbDto.getPw())) {
 				System.out.println("[ERROR] Login Fail.. 패스워드가 일치하지 않습니다");
-				return null;
+				req.setAttribute("msg", "[ERROR] Login Fail.. 패스워드가 일치하지 않습니다.");
+				return false;
 			}
-			//2 사용자에 대한 정보(Session)를 MemberService에 저장
-			String sid = UUID.randomUUID().toString();
-			Session session = new Session(sid,dbDto.getId(),dbDto.getRole());
-			sessionMap.put(sid, session);
-			
-			// 3. 검색 기록 리스트 생성 및 맵에 연결
-		    List<String> searchHistory = new ArrayList<>();
-		    memberSearchHistoryMap.put(dbDto.getId(), searchHistory);
-
-		    // 4. 세션에 대한 정보를 클라이언트가 접근할 수 있도록 하는 세션 구별 ID(Session Cookie) 전달
-		    Map<String, Object> result = new HashMap<>();
-		    result.put("sid", sid);
-		    result.put("role", dbDto.getRole());
-		    result.put("memberId", dbDto.getId());
-		    return result;
+			System.out.println("login func's dbDto" + dbDto);
+			HttpSession session = req.getSession(true);
+			System.out.println("login func's session" + session);
+			session.setAttribute("id", id);
+			session.setAttribute("role", dbDto.getRole());
+			return true;
 			
 		}
 		
@@ -140,17 +138,6 @@ public class MemberServiceImpl implements MemberService {
 			return memberSearchHistoryMap.get(memberId);
 		}
 	    
-		//로그아웃
-		@Override
-		public boolean logout(String id,String sid) {
-			Session session = sessionMap.get(sid);
-			if(! session.getId().equals(id)) {
-				System.out.println("[ERROR] ID가 일치하지 않습니다.");
-				return false;
-			}
-			sessionMap.remove(sid);
-			return true;
-		}
 		
 		//중복확인
 		@Override
@@ -173,5 +160,10 @@ public class MemberServiceImpl implements MemberService {
 				return session.getRole();
 			
 			return null;
+		}
+		@Override
+		public boolean logout(String id, String sid) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 }
