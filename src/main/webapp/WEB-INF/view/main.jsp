@@ -32,6 +32,17 @@
 			</table>
 		</div>
 	</div>
+	
+	
+<hr/>
+<c:if test="${empty ROLE}">
+	<a href=<c:url value="/login.do" /> >LOGIN</a></br>
+</c:if>
+<c:if test="${not empty ROLE}">
+	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
+</c:if>
+
+
 
 	<!-- axios cdn -->
 	<script
