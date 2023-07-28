@@ -21,7 +21,7 @@
 
 aa
 <c:if test="${empty ROLE}">
-	<a href=<c:url value="/WEB-INF/view/member/join.jsp" /> >회원가입</a></br>
+	<a href=<c:url value="/member/join.jsp" /> >회원가입</a></br>
 </c:if>
 
 	

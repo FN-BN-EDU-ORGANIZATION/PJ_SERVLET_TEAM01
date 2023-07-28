@@ -31,9 +31,12 @@
             <option value="user">사용자</option>
         </select><br>
 
-        <input type="submit" value="가입하기">
+       
     </form>
-
+	<form action="member/add.do" method="post">
+    	<input type="text" placeholder="사용자 검색">
+    	<button type="submit"  onclick="submitForm()">회원가입</button>
+	</form>
 
 
 
