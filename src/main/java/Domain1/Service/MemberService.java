@@ -30,11 +30,11 @@ public interface MemberService {
 	//로그인
 	boolean login(HttpServletRequest req) throws Exception;
 
-	// 검색 기록 추가
-	List<String> addSearchHistory(String memberId, String searchText);
-
-	// 검색 기록 조회
-	List<String> getSearchHistory(String memberId);
+//	// 검색 기록 추가
+//	List<String> addSearchHistory(String memberId, String searchText);
+//
+//	// 검색 기록 조회
+//	List<String> getSearchHistory(String memberId);
 
 	//로그아웃
 	boolean logout(String id, String sid);

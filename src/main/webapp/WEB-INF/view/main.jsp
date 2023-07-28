@@ -15,9 +15,10 @@
 	<hr />
 	
 	
-	<div class="history" id="historySection">
+	<!-- 수정된 부분: 검색 내역 조회 부분을 감싸는 div에 class를 추가하고, JavaScript로 해당 요소를 조작하도록 함 -->
+	<div class="history" id="historySectionWrapper" style="display: ${empty ID ? 'none' : 'block'};">
 		<h3>검색 내역 조회</h3>
-		<button class=history_btn>조회하기</button>
+		<button class="history_btn">조회하기</button>
 		<div class="historyList"></div>
 	</div>
 	
@@ -90,14 +91,6 @@
 			const list = response.data;
 			
 			list.forEach((dto)=>{
-				
-				/* const dto_el = document.createElement('div');
-				dto_el.classList.add("item");
-				
-				dto_el.innerHTML+="<span>"+dto.name+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.artist+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.url+"</span> <br/>";
-				show_block_el.appendChild(dto_el); */
 				
 				const row = document.createElement('tr');
 	            
@@ -194,6 +187,9 @@
 	      searchInput.value = '';
 	    }
 	  });
+	
+	
+	
 	
 </script>
 

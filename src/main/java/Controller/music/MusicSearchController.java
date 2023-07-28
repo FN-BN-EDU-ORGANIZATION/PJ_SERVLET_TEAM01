@@ -12,14 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Controller.SubController;
 import Domain1.Dto.MusicDto;
-import Domain1.Service.MemberService;
-import Domain1.Service.MemberServiceImpl;
 import Domain1.Service.MusicService;
 
 public class MusicSearchController implements SubController {
 
 	private MusicService service = MusicService.getInstance();
-	private MemberService mservice = MemberServiceImpl.getInstance();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -36,9 +33,7 @@ public class MusicSearchController implements SubController {
 		// 입력값 검증
 
 		// 서비스 실행
-//		Map<String, Object> result = new HashMap();
-//		List<MusicDto> list = null;
-//		list = service.searchTracks(searchText, memberId);
+
 		List<MusicDto> list = service.searchTracks(searchText, memberId);
 		
 		
