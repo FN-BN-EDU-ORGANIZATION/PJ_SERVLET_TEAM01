@@ -66,7 +66,7 @@ public class LoginController  implements SubController{
 				req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
 			}
 		
-		} catch (Exception e) {
+		} catch (Exception e) {             
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

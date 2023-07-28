@@ -27,7 +27,6 @@ public class MemberSearchController implements SubController{
 		    MemberDto result = memberDao.select(Id);
 		    
 		    if (result != null) {
-//		    	System.out.println("검색완료 ID : "+ result);
 		        HttpSession session = req.getSession();
 		        session.setAttribute("selectedMember", result);
 		        System.out.println("검색완료 ID : "+ result);
