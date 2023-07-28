@@ -1,9 +1,7 @@
 package Controller.music;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Controller.SubController;
+import Domain1.Dto.MemberDto;
 import Domain1.Dto.MusicDto;
 import Domain1.Service.MusicService;
 
 public class MusicSearchController implements SubController {
 
 	private MusicService service = MusicService.getInstance();
+	private MemberDto memDto = new MemberDto();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -28,7 +28,8 @@ public class MusicSearchController implements SubController {
 		
 		// 파라미터 추출
 		String searchText = req.getParameter("searchText");
-		String memberId = req.getParameter("memberId");
+		String memberId =(String) req.getSession().getAttribute("ID");
+		System.out.println("MusicSearchController MEMBER ID : " + memberId);
 		
 		// 입력값 검증
 

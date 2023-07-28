@@ -5,7 +5,7 @@ public class MusicSearchHistoryDto {
 	private String ID;
 	private String searchHistory;
 	
-	MusicSearchHistoryDto(){}
+	public MusicSearchHistoryDto(){}
 
 	public int getHistoryNo() {
 		return historyNo;

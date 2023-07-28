@@ -82,7 +82,7 @@
 		
 		 // input 요소에서 검색어를 가져옴
     	const searchText = document.querySelector('input[type="text"]').value;
-    
+    	console.log("searchText",searchText);
 		
 		axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do",{
 			params: { searchText: searchText } // 검색어를 파라미터로 전달
@@ -173,19 +173,32 @@
 	});
 	
 	const historyBtn = document.querySelector('.history_btn');
-	const historyList = document.querySelector('.historyList');
+	
 	
 	historyBtn.addEventListener('click', function() {
-	    const searchText = searchInput.value.trim();
-	    if (searchText !== '') {
-	      const historyItem = document.createElement('div');
-	      historyItem.classList.add('history_item');
-	      historyItem.innerText = searchText;
-	      historyList.appendChild(historyItem);
-
-	      // Clear the search input after adding to history
-	      searchInput.value = '';
-	    }
+		const projectPath='${pageContext.request.contextPath}';
+		const ServerPort = '${pageContext.request.serverPort}';
+		
+		axios.get('http://localhost:'+ServerPort+projectPath+'/music/searchhistory.do')
+		.then(response=>{
+			console.log('response',response);
+			
+			const historyList = document.querySelector('.historyList');
+			const list = response.data;
+			list.forEach((dto)=>{
+			
+				console.log('dto',dto);
+				
+				const dto_el = document.createElement('div');
+				dto_el.classList.add("item");
+				
+				dto_el.innerHTML+="<span>"+dto.historyNo+"</span> ";
+				dto_el.innerHTML+="<span>"+dto.id+"</span> ";
+				dto_el.innerHTML+="<span>"+dto.searchHistory+"</span> <br/>";
+				historyList.appendChild(dto_el); 
+			}) 
+		})
+		.catch(error=>{console.log('error',error)})
 	  });
 	
 	

@@ -7,15 +7,20 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.table.DefaultTableModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import Domain1.Dao.MusicSearchHistoryDao;
 import Domain1.Dao.MusicSearchHistoryDaoImpl;
+import Domain1.Dto.MemberDto;
 import Domain1.Dto.MusicDto;
 import Domain1.Dto.MusicSearchHistoryDto;
 
@@ -23,7 +28,8 @@ import Domain1.Dto.MusicSearchHistoryDto;
 public class MusicService {
 
 	private DefaultTableModel model;
-	private MusicSearchHistoryDto mshDto;
+ 
+	private MusicSearchHistoryDao dao = MusicSearchHistoryDaoImpl.getInstance();
 	
 	// 싱글톤
 	private static MusicService instance;
@@ -46,18 +52,13 @@ public class MusicService {
 
 	}
 
-	public List<MusicDto> searchTracks(String searchText, String memberId) {
+	public List<MusicDto> searchTracks(String searchText, String memberId) throws Exception {
 		List<MusicDto> list = new ArrayList();
+		MemberDto dto = new MemberDto();
+		dto.setId(memberId);
 		try {
-			
-			MusicSearchHistoryDaoImpl dao = new MusicSearchHistoryDaoImpl();
-	        try {
-				dao.insert(mshDto, searchText);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+
+	
 			String apiKey = "354ad741231e3c7ae853e84460461072";
 			String encodedTrack = searchText;
 			
@@ -77,11 +78,12 @@ public class MusicService {
 				String name = trackNode.path("name").asText();
 				String artist = trackNode.path("artist").asText();
 				String url = trackNode.path("url").asText();
-				list.add(new MusicDto(name, artist, url));
-				
-				
+				list.add(new MusicDto(name, artist, url));					
 			}
-
+			
+			dao.insert(dto, searchText);
+			
+			
 		} catch (IOException | InterruptedException ex) {
 			ex.printStackTrace();
 		}
@@ -100,6 +102,16 @@ public class MusicService {
 			ex.printStackTrace();
 		}
 		list.add(new MusicDto(url));
+		return list;
+	}
+	
+	public List<MusicSearchHistoryDto> getSearchHistoryList(HttpServletRequest req) throws Exception {
+		
+		System.out.println("MusicService's getSearchHistoryList");
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("ID");
+		
+		List<MusicSearchHistoryDto> list = dao.select(id);		
 		return list;
 	}
 
