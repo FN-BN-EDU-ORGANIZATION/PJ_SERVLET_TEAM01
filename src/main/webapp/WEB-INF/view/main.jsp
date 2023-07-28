@@ -13,7 +13,7 @@
 	Account : ${ID} <br /> 
 	Role : ${ROLE} <br />
 	<hr />
-AA
+
 	<!-- 나의 메뉴이동 -->
 <c:if test="${not empty ROLE}">
 	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
@@ -36,7 +36,7 @@ AA
 			</table>
 		</div>
 	</div>
-	
+	aa
 	
 <hr/>
 <c:if test="${empty ROLE}">

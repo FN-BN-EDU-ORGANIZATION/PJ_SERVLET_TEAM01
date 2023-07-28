@@ -61,15 +61,23 @@ MSG : <span class="add_msg"></span>
 	
 	<form action="member/delete.do" method="post">
     	<input type="text" name="id" placeholder="사용자 검색">
-    	<input type="submit" value="삭제" onclick="submitForm()">
+    	<button type="submit"  onclick="submitForm()">삭제</button>
 	</form>
 </div>
 
-<%-- <c:if test="${not empty deleteMessage}">
-	<p>${deleteMessage }</p>
-</c:if> --%>
+<form action="member/search.do" method="post">
+    <input type="text" id="searchKeyword" placeholder="검색어를 입력하세요">
+    <button type="submit"  onclick="submitSearch()">검색</button>
+</form>
+
+
 
 <script>
+function submitSearch(event){	
+
+	
+}
+
 function submitForm(event) {
 	alert("삭제되었다")
 }

@@ -15,5 +15,8 @@ public class MemberAddController implements SubController{
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("MemberAddController execute!");
 
+		
+		
+		
 	}
 }

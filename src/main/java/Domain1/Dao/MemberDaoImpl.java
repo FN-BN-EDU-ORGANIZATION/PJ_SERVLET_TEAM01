@@ -27,8 +27,8 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 		pstmt.setString(1, dto.getId());
 		pstmt.setString(2, dto.getPw());
 		pstmt.setString(3, dto.getName());
-//		pstmt.setString(4, dto.getAddr());
-//		pstmt.setString(5, dto.getPhone());
+		pstmt.setString(4, dto.getAddr());
+		pstmt.setString(5, dto.getPhone());
 		pstmt.setString(6, dto.getRole());
 		int result = pstmt.executeUpdate();
 		pstmt.close();
@@ -48,8 +48,8 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 				dto.setId(rs.getString("id"));
 				dto.setPw(null);
 				dto.setName(rs.getString("username"));
-//				dto.setAddr(rs.getString("addr"));
-//				dto.setPhone(rs.getString("phone"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setPhone(rs.getString("phone"));
 				dto.setRole(rs.getString("role"));
 				list.add(dto);
 			}
@@ -72,8 +72,8 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 			dto.setId(rs.getString("id"));
 			dto.setPw(rs.getString("pw"));
 			dto.setName(rs.getString("username"));
-//			dto.setAddr(rs.getString("addr"));
-//			dto.setPhone(rs.getString("phone"));
+			dto.setAddr(rs.getString("addr"));
+			dto.setPhone(rs.getString("phone"));
 			dto.setRole(rs.getString("role"));
 			rs.close();
 		}
