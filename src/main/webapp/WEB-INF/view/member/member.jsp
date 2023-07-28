@@ -70,7 +70,15 @@ MSG : <span class="add_msg"></span>
     <button type="submit"  onclick="submitSearch()">검색</button>
 </form>
 
-
+<form action="member/update.do" method="post">
+        <!-- 아이디: <input type="text" name="id" required><br> -->
+        비밀번호: <input type="password" name="pw" required><br>
+        이름: <input type="text" name="name" required><br>
+        주소: <input type="text" name="addr" required><br>
+        전화번호: <input type="text" name="phone" required><br>
+        <button type="submit">수정</button>
+<input type="submit" value="회원 가입">
+    </form>
 
 <script>
 function submitSearch(event){	
