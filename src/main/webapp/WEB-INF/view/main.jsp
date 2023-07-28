@@ -21,7 +21,7 @@
 
 aa
 <c:if test="${empty ROLE}">
-	<a href=<c:url value="/member/join.jsp" /> >회원가입</a></br>
+	<a href=<c:url value="/member/add.do" /> >회원가입</a></br>
 </c:if>
 
 	
@@ -51,6 +51,17 @@ aa
 <c:if test="${not empty ROLE}">
 	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
 </c:if>
+
+<form action="member/add.do" method="post">
+        아이디: <input type="text" name="id" required><br>
+        비밀번호: <input type="password" name="pw" required><br>
+        이름: <input type="text" name="name" required><br>
+        주소: <input type="text" name="addr" required><br>
+        전화번호: <input type="text" name="phone" required><br>
+        <input type="submit" value="회원 가입">
+    </form>
+
+
 
 
 
