@@ -18,6 +18,12 @@
 <c:if test="${not empty ROLE}">
 	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
 </c:if>
+
+aa
+<c:if test="${empty ROLE}">
+	<a href=<c:url value="/WEB-INF/view/member/join.jsp" /> >회원가입</a></br>
+</c:if>
+
 	
 	<div>
 		<div class="search_block">
