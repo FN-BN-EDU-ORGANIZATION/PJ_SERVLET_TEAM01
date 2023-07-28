@@ -20,16 +20,17 @@ public class MemberSearchController implements SubController{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("MemberSearchController execute!");
-
+		
 		try {
 		    String Id = req.getParameter("id");
 		    MemberDao memberDao = MemberDaoImpl.getInstance();
 		    MemberDto result = memberDao.select(Id);
 		    
 		    if (result != null) {
-		    	System.out.println("검색완료");
+//		    	System.out.println("검색완료 ID : "+ result);
 		        HttpSession session = req.getSession();
 		        session.setAttribute("selectedMember", result);
+		        System.out.println("검색완료 ID : "+ result);
 		        resp.sendRedirect(req.getContextPath() + "/mypage.do");
 		    } else {
 		        System.out.println("회원을 찾을 수 없습니다.");

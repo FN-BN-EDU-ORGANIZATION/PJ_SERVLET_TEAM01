@@ -47,7 +47,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 				dto = new MemberDto();
 				dto.setId(rs.getString("id"));
 				dto.setPw(null);
-				dto.setName(rs.getString("username"));
+				dto.setName(rs.getString("name"));
 				dto.setAddr(rs.getString("addr"));
 				dto.setPhone(rs.getString("phone"));
 				dto.setRole(rs.getString("role"));
@@ -71,7 +71,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 			dto = new MemberDto();
 			dto.setId(rs.getString("id"));
 			dto.setPw(rs.getString("pw"));
-			dto.setName(rs.getString("username"));
+			dto.setName(rs.getString("name"));
 			dto.setAddr(rs.getString("addr"));
 			dto.setPhone(rs.getString("phone"));
 			dto.setRole(rs.getString("role"));
