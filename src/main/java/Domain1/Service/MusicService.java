@@ -57,7 +57,6 @@ public class MusicService {
 		MemberDto dto = new MemberDto();
 		dto.setId(memberId);
 		try {
-
 	
 			String apiKey = "354ad741231e3c7ae853e84460461072";
 			String encodedTrack = searchText;
@@ -81,7 +80,10 @@ public class MusicService {
 				list.add(new MusicDto(name, artist, url));					
 			}
 			
-			dao.insert(dto, searchText);
+			if (memberId != null && !memberId.isEmpty()) {
+	            dao.insert(dto, searchText);
+	        }
+
 			
 			
 		} catch (IOException | InterruptedException ex) {

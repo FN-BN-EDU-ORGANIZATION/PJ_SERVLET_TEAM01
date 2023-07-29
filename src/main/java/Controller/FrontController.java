@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.member.JoinController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
@@ -36,6 +37,8 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/member/update.do", new MemberUpdateController());
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
+		// join
+		map.put(projectPath + "/member/join.do", new JoinController());
 	
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WaterMelon</title>
 </head>
 <body>
 	<h1>MAIN</h1>
@@ -14,6 +14,16 @@
 	Role : ${ROLE} <br />
 	<hr />
 	
+	<!-- 나의 메뉴이동 -->
+	<c:if test="${not empty ROLE}">
+	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
+	</c:if>
+	<hr />
+	
+	<c:if test="${empty ROLE}">
+	<a href=<c:url value="/member/add.do" /> >회원가입</a></br>
+	</c:if>
+	<hr />
 	
 	<!-- 수정된 부분: 검색 내역 조회 부분을 감싸는 div에 class를 추가하고, JavaScript로 해당 요소를 조작하도록 함 -->
 	<div class="history" id="historySectionWrapper" style="display: ${empty ID ? 'none' : 'block'};">
@@ -56,6 +66,15 @@
 		<a href=<c:url value="/logout.do" />>LOGOUT</a>
 		</br>
 	</c:if>
+	
+	<form action="member/add.do" method="post">
+        아이디: <input type="text" name="id" required><br>
+        비밀번호: <input type="password" name="pw" required><br>
+        이름: <input type="text" name="name" required><br>
+        주소: <input type="text" name="addr" required><br>
+        전화번호: <input type="text" name="phone" required><br>
+        <input type="submit" value="회원 가입">
+    </form>
 
 
 

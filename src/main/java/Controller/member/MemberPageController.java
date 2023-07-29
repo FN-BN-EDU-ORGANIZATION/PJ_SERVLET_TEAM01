@@ -9,16 +9,21 @@ import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
 
-public class MemberPageController implements SubController{
-	
+public class MemberPageController implements SubController {
+
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			HttpSession session = req.getSession();
-			String role = (String) session.getAttribute("role");
-			if (role.equals("role_u")) {
+			String role = (String) session.getAttribute("ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
-			} else if (role.equals("role_m")) {
+//				session.setAttribute("name", name);
+//				session.setAttribute("addr", addr);
+//				session.setAttribute("phone", phone);
+				
+			} else if (role.equals("ROLE_MEMBER")) {
 				req.getRequestDispatcher("WEB-INF/view/member/member.jsp").forward(req, resp);
 			}
 		} catch (ServletException e) {
@@ -30,4 +35,5 @@ public class MemberPageController implements SubController{
 		}
 
 	}
+
 }

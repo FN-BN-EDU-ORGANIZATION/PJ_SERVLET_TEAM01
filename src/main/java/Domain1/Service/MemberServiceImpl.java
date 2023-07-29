@@ -68,15 +68,20 @@ public class MemberServiceImpl implements MemberService {
 		}
 		//회원 수정하기 - 본인 확인
 		@Override
-		public boolean memberUpdate(MemberDto dto, String sid) throws Exception{
-			Session session = sessionMap.get(sid);
-			if(session!=null && session.getId().equals(dto.getId())) 
-			{
-				int result = dao.update(dto);
-				if(result>0)
-					return true;			
-			}
-			return false;
+		public boolean memberUpdate(HttpServletRequest req) throws Exception {
+			String id = (String)req.getParameter("id");
+			
+			MemberDto dbDto = new MemberDto();
+			dbDto = dao.select(id);
+			System.out.println("update func's dbDto" + dbDto);
+			HttpSession session = req.getSession(true);
+			System.out.println("update func's session" + session);
+			session.setAttribute("id", id);
+			session.setAttribute("name", dbDto.getName());
+			session.setAttribute("pw", dbDto.getPw());
+			session.setAttribute("addr", dbDto.getAddr());
+			session.setAttribute("phone", dbDto.getPhone());
+			return true;
 		}
 		//회원 삭제하기
 		@Override
@@ -108,9 +113,11 @@ public class MemberServiceImpl implements MemberService {
 				return false;
 			}
 			//2 사용자에 대한 정보(Session)를 MemberService에 저장
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession(false);
 			session.setAttribute("ID", id);
 			session.setAttribute("ROLE", dbDto.getRole());
+			session.setAttribute("userDto", dbDto);
+			session.setMaxInactiveInterval(60*30);
 			
 			// 3. 검색 기록 리스트 생성 및 맵에 연결
 		    List<String> searchHistory = new ArrayList<>();
@@ -120,26 +127,6 @@ public class MemberServiceImpl implements MemberService {
 		    return true;
 			
 		}
-		
-//		// 검색 기록 추가
-//		@Override
-//		public List<String> addSearchHistory(String memberId, String searchText) {
-//		    List<String> searchHistory = memberSearchHistoryMap.get(memberId);
-//		    if (searchHistory == null) {
-//	            searchHistory = new ArrayList<>();
-//	            memberSearchHistoryMap.put(memberId, searchHistory);
-//	        }
-//	        searchHistory.add(searchText);
-//	        System.out.println("MemberServiceImpl's addSearchHistory : " + searchHistory);
-//	        
-//	        return memberSearchHistoryMap.get(memberId);
-//		}
-//
-//		// 검색 기록 조회
-//		@Override
-//		public List<String> getSearchHistory(String memberId) {
-//			return memberSearchHistoryMap.get(memberId);
-//		}
 	    
 		//로그아웃
 		@Override

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
 import Domain1.Service.MemberService;
@@ -50,7 +51,15 @@ public class LoginController  implements SubController{
 			//3 서비스 실행
 			boolean isLogin=false;
 		
-			isLogin=service.login(req);
+			try {
+				isLogin = service.login(req);
+				HttpSession session = req.getSession();
+				session.getAttribute(id);
+				session.getAttribute(pw);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		
 			//4 View로 전달 
