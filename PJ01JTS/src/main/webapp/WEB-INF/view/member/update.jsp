@@ -9,9 +9,9 @@
 <body>
 <h1>회원정보수정 PAGE</h1>
 ID : ${id } <br />
-NAME : ${name} <br />
-PW : <input name="password" placeholder="${pw}"/><br />
-ADDR : <input name="address" placeholder="${addr}"/><br />
-PHONE : <input name="phone" placeholder="${phone}"/>
+NAME : ${userDto.name} <br />
+PW : <input name="pw" value="${userDto.pw}" /><br />
+ADDR : <input name="addr" value="${userDto.addr}"  /><br />
+PHONE : <input name="phone" value="${userDto.phone }"/>
 </body>
 </html>

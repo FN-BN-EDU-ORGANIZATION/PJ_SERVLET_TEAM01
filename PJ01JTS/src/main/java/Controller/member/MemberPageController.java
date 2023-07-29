@@ -18,6 +18,10 @@ public class MemberPageController implements SubController {
 			String role = (String) session.getAttribute("role");
 			if (role.equals("role_u")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
+//				session.setAttribute("name", name);
+//				session.setAttribute("addr", addr);
+//				session.setAttribute("phone", phone);
+				
 			} else if (role.equals("role_m")) {
 				req.getRequestDispatcher("WEB-INF/view/member/member.jsp").forward(req, resp);
 			}

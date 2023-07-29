@@ -1,11 +1,11 @@
 package Controller.member.auth;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
 import Domain1.Service.MemberService;
@@ -51,6 +51,9 @@ public class LoginController implements SubController {
 
 			try {
 				isLogin = service.login(req);
+				HttpSession session = req.getSession();
+				session.getAttribute(id);
+				session.getAttribute(pw);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
