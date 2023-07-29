@@ -4,25 +4,33 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.table.DefaultTableModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import Domain1.Dao.MusicSearchHistoryDao;
+import Domain1.Dao.MusicSearchHistoryDaoImpl;
+import Domain1.Dto.MemberDto;
 import Domain1.Dto.MusicDto;
+import Domain1.Dto.MusicSearchHistoryDto;
+
 
 public class MusicService {
 
 	private DefaultTableModel model;
-	private MemberService memberService;
-
+ 
+	private MusicSearchHistoryDao dao = MusicSearchHistoryDaoImpl.getInstance();
+	
 	// 싱글톤
 	private static MusicService instance;
 
@@ -40,21 +48,20 @@ public class MusicService {
 		this.model = model;
 	}
 
-	public MusicService(DefaultTableModel model, MemberService memberService) {
-		this.model = model;
-		this.memberService = memberService;
-	}
-
 	public MusicService() {
-		
+
 	}
 
-	public List<MusicDto> searchTracks(String searchText, String memberId) {
+	public List<MusicDto> searchTracks(String searchText, String memberId) throws Exception {
 		List<MusicDto> list = new ArrayList();
+		MemberDto dto = new MemberDto();
+		dto.setId(memberId);
 		try {
-			String apiKey = "354ad741231e3c7ae853e84460461072";
-			String encodedTrack = URLEncoder.encode(searchText, "UTF-8");
 
+	
+			String apiKey = "354ad741231e3c7ae853e84460461072";
+			String encodedTrack = searchText;
+			
 			String apiUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + encodedTrack
 					+ "&limit=300&api_key=" + apiKey + "&format=json";
 			HttpClient httpClient = HttpClient.newHttpClient();
@@ -71,9 +78,12 @@ public class MusicService {
 				String name = trackNode.path("name").asText();
 				String artist = trackNode.path("artist").asText();
 				String url = trackNode.path("url").asText();
-				list.add(new MusicDto(name, artist, url));
+				list.add(new MusicDto(name, artist, url));					
 			}
-
+			
+			dao.insert(dto, searchText);
+			
+			
 		} catch (IOException | InterruptedException ex) {
 			ex.printStackTrace();
 		}
@@ -94,4 +104,15 @@ public class MusicService {
 		list.add(new MusicDto(url));
 		return list;
 	}
+	
+	public List<MusicSearchHistoryDto> getSearchHistoryList(HttpServletRequest req) throws Exception {
+		
+		System.out.println("MusicService's getSearchHistoryList");
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("ID");
+		
+		List<MusicSearchHistoryDto> list = dao.select(id);		
+		return list;
+	}
+
 }

@@ -21,8 +21,7 @@ public interface MemberService {
 	MemberDto memberSearch(String id, String sid) throws Exception;
 
 	//회원 수정하기 - 본인 확인
-//	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
-	boolean memberUpdate(HttpServletRequest req) throws Exception;
+	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
 	
 
 	//회원 삭제하기
@@ -45,5 +44,8 @@ public interface MemberService {
 
 	//역할반환함수
 	String getRole(String sid);
+
+	boolean memberUpdate(MemberDto memberDto) throws Exception;
+
 
 }

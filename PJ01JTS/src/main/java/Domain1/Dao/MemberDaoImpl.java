@@ -29,7 +29,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 		pstmt.setString(3, dto.getName());
 		pstmt.setString(4, dto.getAddr());
 		pstmt.setString(5, dto.getPhone());
-		pstmt.setString(6, dto.getRole());
+		pstmt.setString(6, "role_u");
 		int result = pstmt.executeUpdate();
 		pstmt.close();
 		
@@ -83,13 +83,12 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao {
 	}
 	@Override
 	public int update(MemberDto dto) throws Exception{
-		System.out.println("MemberDaoImpl's update : " + dto.getId());
 		pstmt = conn.prepareStatement("update tbl_member set pw=?,name=?,addr=?,phone=?,role=? where id=?");
 		pstmt.setString(1, dto.getPw());
 		pstmt.setString(2, dto.getName());
 		pstmt.setString(3, dto.getAddr());
 		pstmt.setString(4, dto.getPhone());
-		pstmt.setString(5, dto.getRole());
+		pstmt.setString(5, "role_u");
 		pstmt.setString(6, dto.getId());
 		int result = pstmt.executeUpdate();
 		pstmt.close();
