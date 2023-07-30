@@ -35,19 +35,19 @@
                 <ul>
                     <li><span>ID</span>
                         <!-- <span id="id_check">*id중복여부표시</span> -->
-                        <input id="id_input" type="text" placeholder="아이디" title="아이디입력" required><button id="idcheck_btn">중복확인</button></li>    
+                        <input id="id_input" name="id" type="text" placeholder="아이디" title="아이디입력" required><button id="idcheck_btn">중복확인</button></li>    
                     <li><span>PW</span>
-                        <input id="pw_input" type="password" placeholder="비밀번호" title="비밀번호입력" required></li>
+                        <input id="pw_input" name="pw" type="password" placeholder="비밀번호" title="비밀번호입력" required></li>
                     <li><span>PW Check</span>
                         <!-- <span id="pw_check">*pw체크표시</span> -->
-                        <input id="pwc_input" type="password" placeholder="비밀번호확인" title="비밀번호확인" required></li>
+                        <input id="pwc_input" name="pwc_input" type="password" placeholder="비밀번호확인" title="비밀번호확인" required></li>
                     <li><span>NAME</span>
-                        <input type="text" placeholder="이름" title="이름입력" required></li>
+                        <input type="text"  name="name" placeholder="이름" title="이름입력" required></li>
                     <li><span>ADDRESS</span>
-                        <input id="addr_input" type="text" placeholder="주소" title="주소입력" required><button id="addr_btn">주소검색</button></li>
+                        <input id="addr_input"  name="addr"  type="text" placeholder="주소" title="주소입력" required><button id="addr_btn">주소검색</button></li>
                     <li><input type="text" placeholder="동/호수 입력" title="주소입력"></li>
                     <li><span>PHONE</span>
-                        <input type="text" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
+                        <input type="text" name="phone" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
                     <li><button id="join_btn" onclick="alert('WATERMELON의 멤버가 되신 것을 환영합니다 =D')">JOIN!</button></li>
                 </ul>
                 </form>
