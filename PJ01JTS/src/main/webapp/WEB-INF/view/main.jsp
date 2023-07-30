@@ -1,56 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WaterMelon</title>
 </head>
 <body>
-<h1>MAIN</h1>
-Account : ${id} <br/>
-Role : ${role} <br/>
-<hr>
-<!-- 나의 메뉴이동 -->
-<c:if test="${not empty role}">
-	<a class="mypage_btn" href=<c:url value="/mypage.do" /> >마이페이지</a></br>
-</c:if>
+	<h1>MAIN</h1>
 
-<!-- 사서 메뉴로 이동하기 -->
-<!-- 회원 메뉴로 이동하기 -->
-
-
-<hr/>
-
-<c:if test="${empty role}">
-	<a href=<c:url value="/login.do" /> >LOGIN</a></br>
-</c:if>
-<c:if test="${not empty role}">
-	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
-</c:if>
-
-
-<hr/>
-<div class=msg>
-${msg}
-</div>
+	Account : ${id} <br /> 
+	Role : ${role} <br />
+	<hr />
 	
-	<form action="member/add.do" method="post">
-        아이디: <input type="text" name="id" required><br>
-        비밀번호: <input type="password" name="pw" required><br>
-        이름: <input type="text" name="name" required><br>
-        주소: <input type="text" name="addr" required><br>
-        전화번호: <input type="text" name="phone" required><br>
-        <input type="submit" value="회원 가입">
-    </form>
-
-
+	<!-- 나의 메뉴이동 -->
+	<c:if test="${not empty role}">
+	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
+	</c:if>
+	<hr />
 	
-	
+	<c:if test="${empty role}">
+	<a href=<c:url value="/member/add.do" /> >회원가입</a></br>
+	</c:if>
+	<hr />
 	
 	<!-- 수정된 부분: 검색 내역 조회 부분을 감싸는 div에 class를 추가하고, JavaScript로 해당 요소를 조작하도록 함 -->
-	<div class="history" id="historySectionWrapper" style="display: ${empty ID ? 'none' : 'block'};">
+	<div class="history" id="historySectionWrapper" style="display: ${empty id ? 'none' : 'block'};">
 		<h3>검색 내역 조회</h3>
 		<button class="history_btn">조회하기</button>
 		<div class="historyList"></div>
@@ -79,6 +55,27 @@ ${msg}
 			</table>
 		</div>
 	</div>
+
+
+	<hr />
+	<c:if test="${empty role}">
+		<a href=<c:url value="/login.do" />>LOGIN</a>
+		</br>
+	</c:if>
+	<c:if test="${not empty role}">
+		<a href=<c:url value="/logout.do" />>LOGOUT</a>
+		</br>
+	</c:if>
+	
+	<form action="member/add.do" method="post">
+        아이디: <input type="text" name="id"><br>
+        비밀번호: <input type="password" name="pw"><br>
+        이름: <input type="text" name="name" ><br>
+        주소: <input type="text" name="addr" ><br>
+        전화번호: <input type="text" name="phone"><br>
+        <input type="submit" value="회원 가입">
+    </form>
+
 
 
 	<!-- axios cdn -->
@@ -228,41 +225,5 @@ ${msg}
 	
 </script>
 
-</body>
-</html>
-<!-- axios cdn -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>">
-<script>
-	const mypage_btn_el=document.querySelector('.mypage_btn');
-	mypage_btn_el.addEventListener('click',function(){
-		const projectPath = '${pageContext.request.contextPath}';
-		console.log("mypage_btn_el click",projectPath);
-		
-		const info_block_el = document.querySelector('.info_block');
-		//axios
-		axios.get("http://localhost:8080"+projectPath+"/mypage.do")
-		.then(response=>{
-			console.log("success!",response.data);
-			const list = response.data;
-			
-			list.forEach((dto)=>{
-				
-				console.log('dto',dto);
-				const dto_el = document.createElement('div');
-				dto_el.classList.add("item");
-				
-				dto_el.innerHTML+="<span>"+dto.id+"</span><br/>";
-				dto_el.innerHTML+="<span>"+dto.role+"</span><br/>";
-				dto_el.innerHTML+="<span>"+dto.name+"</span><br/>";
-				dto_el.innerHTML+="<span>"+dto.addr+"</span><br/>";
-				dto_el.innerHTML+="<span>"+dto.phone+"</span><br/>";
-				info_block_el.appendChild(dto_el);
-			})
-		})
-		.catch(error=>{console.log("fail..");})
-	})
-
-</script>
- -->
 </body>
 </html>

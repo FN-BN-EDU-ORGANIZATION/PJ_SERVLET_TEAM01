@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.member.JoinController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
@@ -19,6 +20,7 @@ import Controller.member.auth.LoginController;
 import Controller.member.auth.LogoutController;
 import Controller.music.MusicOpenurlController;
 import Controller.music.MusicSearchController;
+import Controller.music.MusicSearchHistoryController;
 
 public class FrontController extends HttpServlet{
 	
@@ -35,29 +37,31 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/member/update.do", new MemberUpdateController());
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
+		// join
+		map.put(projectPath + "/member/join.do", new JoinController());
+	
 		//member.auth
-		map.put(projectPath + "/login.do", new LoginController());
-		map.put(projectPath + "/logout.do", new LogoutController());
-		
-		
+		map.put(projectPath+"/login.do", new LoginController());		
+		map.put(projectPath+"/logout.do", new LogoutController());
+				
+		//main
+		map.put(projectPath+"/main.do",new MainController());		
+	
 		//music
 		map.put(projectPath + "/music/search.do", new MusicSearchController());
 		map.put(projectPath + "/music/openurl.do", new MusicOpenurlController());
-		
-		//QnA
-		map.put(projectPath + "/qna", new QnAController());
-		
-		//main
-		map.put(projectPath + "/main.do", new MainController());
+		map.put(projectPath + "/music/searchhistory.do", new MusicSearchHistoryController());
 		
 		//mypage
 		map.put(projectPath + "/mypage.do", new MemberPageController());
 		
 		
+		map.put("/qna", new QnAController());
 	}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		SubController controller = map.get(req.getRequestURI());
 		controller.execute(req, resp);
 		

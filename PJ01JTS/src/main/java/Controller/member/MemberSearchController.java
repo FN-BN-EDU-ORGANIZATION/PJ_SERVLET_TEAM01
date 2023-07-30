@@ -16,9 +16,9 @@ public class MemberSearchController implements SubController {
 		System.out.println("MemberSearchController execute!");
 		
 		try {
-		    String Id = req.getParameter("id");
+		    String id = req.getParameter("id");
 		    MemberDao memberDao = MemberDaoImpl.getInstance();
-		    MemberDto result = memberDao.select(Id);
+		    MemberDto result = memberDao.select(id);
 		    
 		    if (result != null) {
 //		    	System.out.println("검색완료 ID : "+ result);

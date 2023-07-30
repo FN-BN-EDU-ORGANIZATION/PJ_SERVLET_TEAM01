@@ -60,7 +60,7 @@ public class MemberAddController implements SubController {
                 HttpSession session = req.getSession();
                 session.setAttribute("selectedMember", memberDto);
                 System.out.println("삽입 완료 ID: " + id);
-                resp.sendRedirect(req.getContextPath() + "/mypage.do");
+                resp.sendRedirect(req.getContextPath() + "/main.do");
             } else {
                 System.out.println("회원 삽입 실패.");
                 resp.sendRedirect(req.getContextPath() + "/mypage.do");
