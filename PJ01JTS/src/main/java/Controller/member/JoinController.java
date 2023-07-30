@@ -9,10 +9,11 @@ public class JoinController implements SubController{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
+		System.out.println("JoinController execute");
+
 		
 		try {
-	            req.getRequestDispatcher("/WEB-INF/view/member/join.jsp").forward(req, resp);
+	            req.getRequestDispatcher("/WEB-INF/view/Joinpage.jsp").forward(req, resp);
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();

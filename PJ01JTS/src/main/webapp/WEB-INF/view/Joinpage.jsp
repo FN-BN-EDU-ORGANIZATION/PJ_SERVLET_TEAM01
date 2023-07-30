@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
             <!-- top-header -->
             <header>
                 <div class="log-header">
-                    <a href="./index.jsp"><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                    <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
                     <ul>
                         <li><a href=""><img  src="resources/static/img/english.png" alt="">ENGLISH</a></li>
                     </ul>
@@ -30,24 +31,26 @@
             
             <section class="join">
                 <h1>워터멜론과 함께 하세요!</h1>
+                <form action="${pageContext.request.contextPath}/member/add.do" method="post">
                 <ul>
                     <li><span>ID</span>
                         <!-- <span id="id_check">*id중복여부표시</span> -->
-                        <input id="id_input" type="text" placeholder="아이디" title="아이디입력"><button id="idcheck_btn">중복확인</button></li>    
+                        <input id="id_input" name="id" type="text" placeholder="아이디" title="아이디입력" required><button id="idcheck_btn">중복확인</button></li>    
                     <li><span>PW</span>
-                        <input id="pw_input" type="password" placeholder="비밀번호" title="비밀번호입력"></li>
+                        <input id="pw_input" name="pw" type="password" placeholder="비밀번호" title="비밀번호입력" required></li>
                     <li><span>PW Check</span>
                         <!-- <span id="pw_check">*pw체크표시</span> -->
-                        <input id="pwc_input" type="password" placeholder="비밀번호확인" title="비밀번호확인"></li>
+                        <input id="pwc_input" name="pwc_input" type="password" placeholder="비밀번호확인" title="비밀번호확인" required></li>
                     <li><span>NAME</span>
-                        <input type="text" placeholder="이름" title="이름입력"></li>
+                        <input type="text"  name="name" placeholder="이름" title="이름입력" required></li>
                     <li><span>ADDRESS</span>
-                        <input id="addr_input" type="text" placeholder="주소" title="주소입력"><button id="addr_btn">주소검색</button></li>
+                        <input id="addr_input"  name="addr"  type="text" placeholder="주소" title="주소입력" required><button id="addr_btn">주소검색</button></li>
                     <li><input type="text" placeholder="동/호수 입력" title="주소입력"></li>
                     <li><span>PHONE</span>
-                        <input type="text" placeholder="핸드폰번호" title="핸드폰번호입력"></li>
+                        <input type="text" name="phone" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
                     <li><button id="join_btn" onclick="alert('WATERMELON의 멤버가 되신 것을 환영합니다 =D')">JOIN!</button></li>
                 </ul>
+                </form>
             </section>
 
             <footer>

@@ -21,6 +21,7 @@ import Controller.member.auth.LogoutController;
 import Controller.music.MusicOpenurlController;
 import Controller.music.MusicSearchController;
 import Controller.music.MusicSearchHistoryController;
+import Controller.music.MusicSearchPageController;
 
 public class FrontController extends HttpServlet{
 	
@@ -38,7 +39,7 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
 		// join
-		map.put(projectPath + "/member/join.do", new JoinController());
+		map.put(projectPath + "/join.do", new JoinController());
 	
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		
@@ -47,10 +48,15 @@ public class FrontController extends HttpServlet{
 		//main
 		map.put(projectPath+"/main.do",new MainController());		
 	
+		//index
+		map.put(projectPath+"/index.do", new IndexController());
+		map.put(projectPath+"/indexlog.do", new IndexlogController());
+		
 		//music
 		map.put(projectPath + "/music/search.do", new MusicSearchController());
 		map.put(projectPath + "/music/openurl.do", new MusicOpenurlController());
 		map.put(projectPath + "/music/searchhistory.do", new MusicSearchHistoryController());
+		map.put(projectPath + "/music/searchpage.do", new MusicSearchPageController());
 		
 		//mypage
 		map.put(projectPath + "/mypage.do", new MemberPageController());

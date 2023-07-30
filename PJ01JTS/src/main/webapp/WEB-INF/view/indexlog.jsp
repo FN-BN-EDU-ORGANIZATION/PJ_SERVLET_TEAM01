@@ -6,30 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-	<style>
+<style>
 		<%@include file="/resources/static/css/common.css" %>
 		<%@include file="/resources/static/css/header.css" %>
-		<%@include file="/resources/static/css/Main_Page.css" %>
+		<%@include file="/resources/static/css/Main_Page_log.css" %>
 		<%@include file="/resources/static/css/footer.css" %>		
 	</style>
-    
+
 </head>
 <body>
-
 <div class="wrapper">
         <!-- 메인 -->
         <header>
             <div class="top-header">
-                <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <a href=<c:url value="/indexlog.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
                 <div class="search_box">
-                    <div class="search_btn">SEARCH</div>
-                    <input id="searchInput" type="text" placeholder="듣고 싶은 노래를 검색하세요!" >
-                    <a href=<c:url value="/music/searchpage.do" />><img src="resources/static/img/search.png" alt=""></a>
+                    <div>SEARCH</div>
+                    <input type="text" placeholder="듣고 싶은 노래를 검색하세요!">
+                    <a href=""><img src="resources/static/img/search.png" alt=""></a>
                 </div>
                 <ul>
-                    <li><a href=""
-                            style="color:rgb(92, 115, 6); font-family: 'SDSamliphopangche_Basic'; font-size: 19px;"><img
+                    <li><a href="" style="color:rgb(92, 115, 6); font-family: 'SDSamliphopangche_Basic'; font-size: 19px;"><img
                                 src="resources/static/img/add.png" alt=""> 멤버십가입</a></li>
                     <li><a href=""><img src="resources/static/img/english.png" alt="">ENGLISH</a></li>
                 </ul>
@@ -42,11 +39,11 @@
                         <li><a href="">수박차트</a></li>
                         <li><a href="">수박DJ</a></li>
                         <li><a href="">수박TV</a></li>
-                        <li><a href="">수박매거진</a></li>
-                        <li><a href="./QnA_Page.html">공지사항</a></li>
-                        <li><a href="">마이페이지</a></li>
+                        <li><a href="">수박매거진</a></li>                        
+                        <li><a href="./QnA_Page.html">공지사항</a></li>                        
+                        <li><a href="">마이페이지</a></li>                        
                     </ul>
-                </span>
+                </span>    
             </div>
             <div class="navi">
                 <div class="Menu_left">
@@ -54,7 +51,7 @@
                         <li>
                             <a href="">수박차트</a>
                             <ul class="two--depth">
-                                <li><a href="./TOP100.html">국내TOP100</a></li>
+                                <li><a href="">국내TOP100</a></li>
                                 <li><a href="">해외TOP100</a></li>
                                 <li><a href="">최신음악</a></li>
                                 <li><a href="">장르음악</a></li>
@@ -97,45 +94,54 @@
                         <li>
                             <a href="">마이페이지</a>
                             <ul class="two--depth">
-                                <li><a href="">정보수정</a></li>
+                                <li><a href=<c:url value="/mypage.do" />>정보수정</a></li>
                                 <li><a href="">마이리스트</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
-
+            
         </nav>
         <div class="header_line"></div>
         <main>
             <section class="section1">
                 <aside>오늘의 추천 앨범
-                    <!-- Slider main container -->
-                    <div class="d1" style="overflow: hidden;">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide"><a><img src="resources/static/img/Feeling.png">Feeling</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/NewJeans.png">NewJeans 1st EP 'NewJeans'</a>
-                            </div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/That's Not how This Works.png">That's Not how
-                                    This Works</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song1.webp">NewJeans 'Super Shy'</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song3.jpg">I feel</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song6.jpg">UNFORGIVEN</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song10.webp">I've IVE</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song8.webp">MY WORLD - The 3rd Mini Album</a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/song4.jpg">1집 Alone</a></div>
-                        </div>
+                    <div class="d1">
+                        <a href="">
+                            <img src="resources/static/img/Feeling.png" width="220px" height="220px" style="display: block;"
+                                alt="">
+                                <br>
+                                Feeling
+                        </a>
+                        <a href="">
+                            <img src="resources/static/img/NewJeans.png" width="220px" height="220px" style="display: block;"
+                                alt="">
+                                <br>
+                                NewJeans 1st EP 'NewJeans'
+                        </a>
+                        <a href="">
+                            <img src="resources/static/img/That's Not how This Works.png" width="220px" height="220px"
+                                style="display: block;" alt="">
+                                <br>
+                                That's Not how This Works
+                        </a>
+                        <!-- <div class="indicator">
+                            <div class="indicator-item"></div>
+                            <div class="indicator-item"></div>
+                            <div class="indicator-item active"></div>
+                            <div class="indicator-item"></div>
+                        </div> -->
                     </div>
                 </aside>
                 <article>워터멜론에서 즐거운 음악감상하세요!
-                    <a href=<c:url value="/login.do" />>로그인</a>
+                    <div>
+                        <br>
+                        <a href=""><img src="resources/static/img/user.png" alt=""></a>
+                        <span>${name}님, 환영합니다!</span>
+                    </div>
                     <h4></h4>
-                    <a href="">아이디</a>
-                    <span>/</span>
-                    <a href="">비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    <a href=<c:url value="/join.do" />>회원가입</a>
+                    <button id="logout_btn" onclick="location.href='index.do'">LOGOUT</button>
                 </article>
             </section>
             <section class="section2">
@@ -243,21 +249,5 @@
 
         </footer>
     </div>
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script>
-        const swiper_multi_slider = new Swiper('.section1 .d1', {
-            // Optional parameters
-            direction: 'horizontal',
-            autoplay: { delay: 2000 },
-            loop: true,
-            slidesPerView: 3,
-            loop: true,
-            loopFillGroupWithBlank: true,
-
-        });
-    </script>
-    
 </body>
 </html>
