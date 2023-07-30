@@ -39,4 +39,6 @@ public interface MemberService {
 	//역할반환함수
 	String getRole(String sid);
 
+	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
+
 }

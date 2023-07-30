@@ -3,7 +3,7 @@ li{
     }
 
     .join {
-        width: 410px;
+        width: 450px;
         display: block;
         height: 800px;
         padding-top: 50px;
@@ -17,21 +17,21 @@ li{
         text-align: center;
     }
 
-    .join>ul {
+    .join>form ul {
         padding: 40px 0 10px;
     }
     
-    .join>ul li {
+    .join>form ul li {
         padding: 0 0 12px;
         text-align: left;
     }
 
-    .join>ul>li>span{
+    .join>form>ul>li>span{
         font-size: 20px;
         display: block;
     }
 
-    .join>ul li input {
+    .join>form ul li input {
         width: 100%;
         height: 40px;
         box-sizing: border-box;
@@ -41,7 +41,7 @@ li{
         font-family: 'SDSamliphopangche_Basic';
     }
 
-    .join>ul li #id_input, #addr_input{
+    .join>form>ul>li #id_input, #addr_input{
         width: 75%;
         height: 40px;
         box-sizing: border-box;
@@ -51,12 +51,12 @@ li{
         font-family: 'SDSamliphopangche_Basic';
     }
 
-    .join>ul li input::-webkit-input-placeholder {
+    .join form ul li input::-webkit-input-placeholder {
         font-size: 18px;
         color: gray;
     }
 
-    .join #idcheck_btn, #addr_btn{
+    .join form #idcheck_btn, #addr_btn{
         width: 82px;
         height: 40px;
         margin-left: 15px;
@@ -65,7 +65,7 @@ li{
         cursor: pointer;
     }
 
-    .join #join_btn {
+    .join>form #join_btn {
         width: 100%;
         height: 50px;
         background: #ed1c24;

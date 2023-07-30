@@ -10,8 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
     <!-- <welcome-file>/WEB-INF/view/main.jsp</welcome-file> -->
     <welcome-file>/WEB-INF/view/index.jsp</welcome-file>
-    <welcome-file>/WEB-INF/view/Joinpage.jsp</welcome-file>
-    <welcome-file>/WEB-INF/view/loginpage.jsp</welcome-file>
   </welcome-file-list>
   
   <servlet>

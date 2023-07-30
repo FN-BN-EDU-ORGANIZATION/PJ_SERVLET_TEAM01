@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +14,23 @@
 	</style>
 </head>
 <body>
+
+<%
+    // 검색어를 받아옵니다.
+    String searchText = request.getParameter("searchText");
+    // searchText가 null이라면 빈 문자열로 초기화합니다.
+    if (searchText == null) {
+        searchText = "";
+    }
+%>
 	<div class="wrapper">
         <!-- 메인 -->
         <header>
             <div class="top-header">
-                <a href="./index.jsp"><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
                 <div class="search_box">
                     <div>SEARCH</div>
-                    <input id="searchInput" type="text" placeholder="듣고 싶은 노래를 검색하세요!">
+                    <input id="searchInput" type="text" placeholder="듣고 싶은 노래를 검색하세요!" value="<%= searchText %>">
                     <a href=""><img src="resources/static/img/search.png" alt=""></a>
                 </div>
                 <ul>
@@ -110,108 +120,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Artist</th>
-                            <th>Image</th>
-                            <th>Controls</th>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td> <!-- 버튼들을 포함하는 열 -->
-                                <button onclick="previous()">⏪</button>
-                                <button onclick="togglePlayback(this)">▶</button>
-                                <button onclick="next()">⏩</button>
-                            </td>
+                            <th>URL</th>
                         </tr>
                     </table>
                 </div>

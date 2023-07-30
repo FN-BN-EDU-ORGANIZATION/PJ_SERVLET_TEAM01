@@ -17,22 +17,22 @@ li{
         text-align: center;
     }
 
-    .login>ul {
+    .login>form ul {
         padding: 40px 0 10px;
     }
     
-    .login>ul>.log_chk{
+    .login>form>ul>.log_chk{
         display: flex;
         justify-content: space-between;
         height: 50px;
     }
 
-    .login>ul li {
+    .login>form ul li {
         padding: 0 0 12px;
         text-align: left;
     }
 
-    .login>ul li input {
+    .login>form ul li input {
         width: 100%;
         height: 46px;
         box-sizing: border-box;
@@ -41,21 +41,21 @@ li{
         font-family: 'NanumSquareAceb'; 
     }
 
-    .login>ul li input::-webkit-input-placeholder {
+    .login>form ul li input::-webkit-input-placeholder {
         font-size: 16px;
         color: gray;
     }
 
-    .login>ul li input[type="checkbox"] {
+    .login>form ul li input[type="checkbox"] {
         display: none;
     }
 
-    .login>ul li input[type="checkbox"]+label {
+    .login>form ul li input[type="checkbox"]+label {
         height: 36px;
         line-height: 36px;
     }
 
-    .login>ul li input[type="checkbox"]+label:before {
+    .login>form ul li input[type="checkbox"]+label:before {
         content: "";
         display: inline-block;
         margin: 0 10px 0 0;

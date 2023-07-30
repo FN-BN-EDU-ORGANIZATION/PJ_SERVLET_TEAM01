@@ -17,7 +17,7 @@ NAME : ${userDto.name} <br />
 PW : ${userDto.pw}<br />
 ADDR : ${userDto.addr}<br />
 PHONE : ${userDto.phone}
-<button onclick = "location.href='${pageContext.request.contextPath}/member/update.do'">정보수정</button>
+<button onclick = "location.href='${pageContext.request.contextPath}/member/add.do'">정보수정</button>
 
 
 </div>
