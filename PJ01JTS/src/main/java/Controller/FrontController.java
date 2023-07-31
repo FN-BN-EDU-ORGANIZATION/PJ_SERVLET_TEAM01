@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controller.member.JoinController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
 import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
+import Controller.member.auth.IdcheckController;
 import Controller.member.auth.LoginController;
 import Controller.member.auth.LogoutController;
 import Controller.music.MusicOpenurlController;
@@ -38,13 +38,12 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/member/update.do", new MemberUpdateController());
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
-		// join
-//		map.put(projectPath + "/join.do", new JoinController());
-	
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		
 		map.put(projectPath+"/logout.do", new LogoutController());
+		map.put(projectPath+"/checkDuplicateId.do", new IdcheckController());
 				
+		
 		//main
 		map.put(projectPath+"/main.do",new MainController());		
 	

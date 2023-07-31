@@ -12,7 +12,27 @@
 		<%@include file="/resources/static/css/Join_Page.css" %>
 		<%@include file="/resources/static/css/footer.css" %>		
 	</style>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+async function checkDuplicateId() {
+    var id = document.getElementById("id_input").value;
 
+    try {
+        const response = await axios.get("${pageContext.request.contextPath}/checkDuplicateId.do", {
+            params: { id: id },
+        });
+
+        const isDuplicate = response.data;
+        if (!isDuplicate) {
+            alert("이미 사용 중인 아이디입니다.");
+        } else {
+            alert("사용 가능한 아이디입니다.");
+        }
+    } catch (error) {
+        alert("중복 확인 중에 오류가 발생했습니다.");
+    } 
+}
+</script>
 </head>
 <body>
 	
@@ -35,7 +55,7 @@
                 <ul>
                     <li><span>ID</span>
                         <!-- <span id="id_check">*id중복여부표시</span> -->
-                        <input id="id_input" name="id" type="text" placeholder="아이디" title="아이디입력" required><button id="idcheck_btn">중복확인</button></li>    
+                        <input id="id_input" name="id" type="text" placeholder="아이디" title="아이디입력" required><button id="idcheck_btn" onclick="checkDuplicateId()">중복확인</button></li>    
                     <li><span>PW</span>
                         <input id="pw_input" name="pw" type="password" placeholder="비밀번호" title="비밀번호입력" required></li>
                     <li><span>PW Check</span>
@@ -79,6 +99,7 @@
     </div>
     
     
+ 
     
 </body>
 </html>
