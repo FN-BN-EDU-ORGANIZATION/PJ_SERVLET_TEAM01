@@ -24,7 +24,7 @@
 	</form>
 </div>
 	
-	dddddd
+	ddddddaaa
 	
 	<form action="member/search.do" method="post">
     <input type="text" name="id" placeholder="검색어를 입력하세요">
