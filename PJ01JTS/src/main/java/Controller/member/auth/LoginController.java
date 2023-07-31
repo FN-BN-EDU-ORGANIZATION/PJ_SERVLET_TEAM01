@@ -67,19 +67,6 @@ public class LoginController  implements SubController{
 			e.printStackTrace();
 		}
 		
-		// 1 파라미터 추출
-//		String id = (String) param.get("id");
-//		String pw = (String) param.get("pw");
-//		// 2 입력값 검증
-//		if (id == null || pw == null) {
-//			System.out.println("[ERROR] Data Validation Check Error !");
-//			return null;
-//		}
-//		// 3 서비스 실행
-//		Map<String, Object> result = null;
-//		try {
-//			result = service.login(id, pw);
-
 	}
 
 }
