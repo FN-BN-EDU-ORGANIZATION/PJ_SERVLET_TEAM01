@@ -27,18 +27,18 @@
         <!-- 메인 -->
         <header>
             <div class="top-header">
-                <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <a href=<c:url value="/index.do" />><img class="logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt=""></a>
                 <form action="<c:url value='/music/search.do' />" method="get">
                 <div class="search_box">
                     <div class="search_btn" id="searchButton">SEARCH</div>
                     <input id="searchInput" type="text" name="searchText" placeholder="듣고 싶은 노래를 검색하세요!" >
-                    <img id="searchIcon" src="resources/static/img/search.png" alt="" onclick="window.location.href='<c:url value="/music/search.do" />'" >
+                    <img id="searchIcon" src="${pageContext.request.contextPath}/resources/static/img/search.png" alt="" onclick="window.location.href='<c:url value="/music/search.do" />'" >
                 </div>
                 </form>
                 <ul>
                     <li><a href="" style="color:rgb(92, 115, 6); font-family: 'NanumSquareAceb';"><img
-                                src="resources/static/img/add.png" alt=""> 멤버십가입</a></li>
-                    <li><a href=""><img src="resources/static/img/english.png" alt="">ENGLISH</a></li>
+                                src="${pageContext.request.contextPath}/resources/static/img/add.png" alt=""> 멤버십가입</a></li>
+                    <li><a href=""><img src="${pageContext.request.contextPath}/resources/static/img/english.png" alt="">ENGLISH</a></li>
                 </ul>
             </div>
         </header>
@@ -140,7 +140,7 @@
             </div>
             <p></p>
             <div class="Site_info">
-                <img id="footer_logo" src="./img/로고.png" alt="">
+                <img id="footer_logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt="">
                 <span class="Sitename">(주)WATERMELON MUSIC</span>
                 <span>대구광역시 중구 중앙대로 366 반월센트럴타워 10층</span>
                 <span>대표이사 : 윤치연, 김예솔, 이헌지, 최정기</span>

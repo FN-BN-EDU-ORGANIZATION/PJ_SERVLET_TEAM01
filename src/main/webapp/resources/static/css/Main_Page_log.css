@@ -14,43 +14,23 @@
 }
 
 .section1>aside>.d1 {
-    width: auto;
+    width: 830px;
     height: 280px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    margin-top: 30px;
+    border: 1px solid gray;
+    border-radius: 10px;
 }
 
-.indicator {
-    flex: 1 1 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+.section1>aside>.d1>.swiper-wrapper{
+    width: 830px;
 }
 
-.indicator-item {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 5px;
-    background-color: #bbb;
-    cursor: pointer;
+.section1>aside>.d1>.swiper-wrapper>.swiper-slide{
+    width: 200px;
 }
 
-.indicator-item.active {
-    background-color: #3498db;
-}
-
-
-.section1>aside>.d2 {
-    display: flex;
-    height: 50px;
-    font-size: 1.3rem;
-    color: black;
-}
-
-.section1>aside>.d1>a {
+.section1>aside>.d1>.swiper-wrapper>.swiper-slide>a{
+    display: block;
     width: 220px;
     justify-content: space-around;
     height: 220px;
@@ -61,14 +41,20 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.section1>aside>.d1>a:hover {
-    transform: scale(1.1);
+.section1>aside>.d1>.swiper-wrapper>.swiper-slide>a:hover{
+    transform: scale(1.05);
 }
 
-.section1>aside>.d1>a:active,
-.section1>aside>.d1>a:focus {
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
+.section1 > aside > .d1 > .swiper-wrapper>.swiper-slide> a:active,
+.section1 > aside > .d1 > .swiper-wrapper>.swiper-slide> a:focus {
+  transform: scale(1); 
+  transition: transform 0.3s ease-in-out;
+}
+
+.section1>aside>.d1>.swiper-wrapper>.swiper-slide>a>img{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
 }
 
 .section1>article {

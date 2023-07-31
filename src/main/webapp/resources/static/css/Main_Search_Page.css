@@ -29,25 +29,21 @@ th {
 }
 td:nth-child(1),
 th:nth-child(1) {
-  width: 5%; /* 첫 번째 열의 너비 */
+  width: 10%; /* 첫 번째 열의 너비 */
 }
 
 td:nth-child(2),
 th:nth-child(2) {
-  width: 35%; /* 두 번째 열의 너비 */
+  width: 25%; /* 두 번째 열의 너비 */
 }
 
 td:nth-child(3),
 th:nth-child(3) {
-  width: 20%; /* 세 번째 열의 너비 */
+  width: 25%; /* 세 번째 열의 너비 */
 }
 
 td:nth-child(4),
 th:nth-child(4) {
-  width: 20%; /* 네 번째 열의 너비 */
+  width: 40%; /* 네 번째 열의 너비 */
 }
 
-td:nth-child(5),
-th:nth-child(5) {
-  width: 20%; /* 다섯 번째 열의 너비 */
-}

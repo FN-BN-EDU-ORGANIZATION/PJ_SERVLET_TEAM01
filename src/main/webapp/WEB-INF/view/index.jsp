@@ -113,7 +113,7 @@
             <section class="section1">
                 <aside>오늘의 추천 앨범
                     <!-- Slider main container -->
-                    <div class="d1">
+                    <div class="d1" style="overflow: hidden;">
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
                             <!-- Slides -->
@@ -122,12 +122,12 @@
                             </div>
                             <div class="swiper-slide"><a><img src="resources/static/img/That's Not how This Works.png">That's Not how
                                     This Works</a></div>
-                            <div class="swiper-slide"><a><img src=""></a></div>
-                            <div class="swiper-slide"><a><img src=""></a></div>
-                            <div class="swiper-slide"><a><img src=""></a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/Feeling.png"></a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/NewJeans.png"></a></div>
-                            <div class="swiper-slide"><a><img src="resources/static/img/That's Not how This Works.png"></a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song1.webp">NewJeans 'Super Shy'</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song3.jpg">I feel</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song6.jpg">UNFORGIVEN</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song10.webp">I've IVE</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song8.webp">MY WORLD - The 3rd Mini Album</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song4.jpg">1집 Alone</a></div>
                         </div>
                     </div>
                 </aside>
@@ -249,16 +249,16 @@
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const swiper_multi_slider = new Swiper('.section1 .d1', {
-            // Optional parameters
-            direction: 'horizontal',
-            autoplay: { delay: 2000 },
-            loop: true,
-            slidesPerView: 3,
-            loop: true,
-            loopFillGroupWithBlank: true,
+    const swiper_multi_slider = new Swiper('.section1 .d1', {
+        // Optional parameters
+        direction: 'horizontal',
+        autoplay: { delay: 2000 },
+        loop: true,
+        slidesPerView: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
 
-        });
+    });
     </script>
     
     <!-- axios cdn -->

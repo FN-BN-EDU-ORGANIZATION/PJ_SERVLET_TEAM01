@@ -2,9 +2,7 @@
 
 section.section1{
     display: flex;
-    
     margin: 20px auto;
-
 }
 
 .section1>aside {
@@ -17,30 +15,21 @@ section.section1{
 }
 
 .section1>aside>.d1 {
-    width: 900px;
+    width: 830px;
     height: 280px;
     margin-top: 30px;
-    /*display: flex;
-     flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center; */
-    border: 3px solid;
+    border: 1px solid gray;
+    border-radius: 10px;
 }
 
 .section1>aside>.d1>.swiper-wrapper{
-    width: 900px;
-    border: 1px solid blue;
-    z-index: -1;
+    width: 830px;
 }
 
 .section1>aside>.d1>.swiper-wrapper>.swiper-slide{
-    border: 2px solid;
     width: 200px;
-    /* display: inline-block; */
 }
 
-
-/* 수정중! */
 .section1>aside>.d1>.swiper-wrapper>.swiper-slide>a{
     display: block;
     width: 220px;
@@ -54,7 +43,7 @@ section.section1{
 }
 
 .section1>aside>.d1>.swiper-wrapper>.swiper-slide>a:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .section1 > aside > .d1 > .swiper-wrapper>.swiper-slide> a:active,
@@ -63,29 +52,11 @@ section.section1{
   transition: transform 0.3s ease-in-out;
 }
 
-
-/* 원본 */
-/* .section1>aside>.d1>.a {
+.section1>aside>.d1>.swiper-wrapper>.swiper-slide>a>img{
     width: 220px;
-    justify-content: space-around;
     height: 220px;
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    font-size: 1.2rem;
-    transition: transform 0.3s ease-in-out;
+    object-fit: cover;
 }
-
-.section1>aside>.d1>a:hover {
-    transform: scale(1.1);
-}
-
-.section1 > aside > .d1 > a:active,
-.section1 > aside > .d1 > a:focus {
-  transform: scale(1); 
-  transition: transform 0.3s ease-in-out;
-} */
-
 
 .section1>article {
     border: 1px solid lightgray;

@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+	<style>
 		<%@include file="/resources/static/css/common.css" %>
 		<%@include file="/resources/static/css/header.css" %>
 		<%@include file="/resources/static/css/Main_Page_log.css" %>
@@ -109,31 +110,22 @@
         <main>
             <section class="section1">
                 <aside>오늘의 추천 앨범
-                    <div class="d1">
-                        <a href="">
-                            <img src="resources/static/img/Feeling.png" width="220px" height="220px" style="display: block;"
-                                alt="">
-                                <br>
-                                Feeling
-                        </a>
-                        <a href="">
-                            <img src="resources/static/img/NewJeans.png" width="220px" height="220px" style="display: block;"
-                                alt="">
-                                <br>
-                                NewJeans 1st EP 'NewJeans'
-                        </a>
-                        <a href="">
-                            <img src="resources/static/img/That's Not how This Works.png" width="220px" height="220px"
-                                style="display: block;" alt="">
-                                <br>
-                                That's Not how This Works
-                        </a>
-                        <!-- <div class="indicator">
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item active"></div>
-                            <div class="indicator-item"></div>
-                        </div> -->
+                    <div class="d1" style="overflow: hidden;">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide"><a><img src="resources/static/img/Feeling.png">Feeling</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/NewJeans.png">NewJeans 1st EP 'NewJeans'</a>
+                            </div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/That's Not how This Works.png">That's Not how
+                                    This Works</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song1.webp">NewJeans 'Super Shy'</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song3.jpg">I feel</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song6.jpg">UNFORGIVEN</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song10.webp">I've IVE</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song8.webp">MY WORLD - The 3rd Mini Album</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song4.jpg">1집 Alone</a></div>
+                        </div>
                     </div>
                 </aside>
                 <article>워터멜론에서 즐거운 음악감상하세요!
@@ -251,5 +243,19 @@
 
         </footer>
     </div>
+    
+     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+    const swiper_multi_slider = new Swiper('.section1 .d1', {
+        // Optional parameters
+        direction: 'horizontal',
+        autoplay: { delay: 2000 },
+        loop: true,
+        slidesPerView: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+
+    });
+    </script>
 </body>
 </html>
