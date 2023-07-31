@@ -42,12 +42,7 @@ public class MemberAddController implements SubController{
             memberDto.setAddr(address);
             memberDto.setPhone(phone);
             memberDto.setRole(role);
-
-<<<<<<< HEAD
-           // MemberDao memberDao = MemberDaoImpl.getInstance();
-=======
 //            MemberDao memberDao = MemberDaoImpl.getInstance();
->>>>>>> branch 'ycy' of https://github.com/FN-BN-EDU-ORGANIZATION/PJ_SERVLET_TEAM01.git
             boolean result = service.memberJoin(memberDto);
 
             if (result) {

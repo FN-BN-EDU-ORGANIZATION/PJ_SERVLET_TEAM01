@@ -17,7 +17,7 @@
 <div class="wrapper">
 <header>
    <div class="log-header">
-       <a href="./index.jsp"><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+       <a href=<c:url value="/indexlog.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
        <ul>
           <li><a href=""><img  src="resources/static/img/english.png" alt="">ENGLISH</a></li>
        </ul>
