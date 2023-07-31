@@ -72,8 +72,8 @@ public class MemberServiceImpl implements MemberService {
 			int result = dao.update(dto);
 			if (result > 0)
 				return true;
-		return false;
-	}
+			return false;
+		}
 		//회원 삭제하기
 		@Override
 		public boolean memberDelete(String id, String sid) throws Exception{
@@ -90,29 +90,26 @@ public class MemberServiceImpl implements MemberService {
 		//로그인
 		@Override
 		public boolean login(HttpServletRequest req) throws Exception{
-			//1 ID/PW 체크 -> Dao 전달받은 id와 일치하는 정보를 가져와서 pw일치 확인
 			String id = (String) req.getParameter("id");
 			String pw = (String) req.getParameter("pw");
+			//1 ID/PW 체크 -> Dao 전달받은 id와 일치하는 정보를 가져와서 pw일치 확인
 			
 			MemberDto dbDto = dao.select(id);
 			if(dbDto==null) {
 				System.out.println("[ERROR] Login Fail.. 아이디가 일치하지 않습니다");
+				req.setAttribute("msg", "[ERROR] Login Fail.. 아이디가 일치하지 않습니다.");
 				return false;
 			}
 			if(!pw.equals(dbDto.getPw())) {
 				System.out.println("[ERROR] Login Fail.. 패스워드가 일치하지 않습니다");
+				req.setAttribute("msg", "[ERROR] Login Fail.. 패스워드가 일치하지 않습니다.");
 				return false;
 			}
-			//2 사용자에 대한 정보(Session)를 MemberService에 저장
+			System.out.println("login func's dbDto" + dbDto);
 			HttpSession session = req.getSession(false);
 			session.setAttribute("ID", id);
 			session.setAttribute("ROLE", dbDto.getRole());
 			session.setAttribute("userDto", dbDto);
-			session.setMaxInactiveInterval(60*30);
-			
-			// 3. 검색 기록 리스트 생성 및 맵에 연결
-		    List<String> searchHistory = new ArrayList<>();
-		    memberSearchHistoryMap.put(dbDto.getId(), searchHistory);
 
 		    // 4. 세션에 대한 정보를 클라이언트가 접근할 수 있도록 하는 세션 구별 ID(Session Cookie) 전달
 		    return true;
