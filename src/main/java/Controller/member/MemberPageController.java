@@ -15,8 +15,7 @@ public class MemberPageController implements SubController {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			HttpSession session = req.getSession();
-			String role = (String) session.getAttribute("ROLE");
-			System.out.println(role);
+			String role = (String) session.getAttribute("role");
 			if (role.equals("ROLE_USER")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
 //				session.setAttribute("name", name);

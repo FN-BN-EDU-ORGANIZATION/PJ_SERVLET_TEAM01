@@ -68,16 +68,12 @@ public class MemberServiceImpl implements MemberService {
 		}
 		//회원 수정하기 - 본인 확인
 		@Override
-		public boolean memberUpdate(MemberDto dto, String sid) throws Exception{
-			Session session = sessionMap.get(sid);
-			if(session!=null && session.getId().equals(dto.getId())) 
-			{
-				int result = dao.update(dto);
-				if(result>0)
-					return true;			
-			}
-			return false;
-		}
+		public boolean memberUpdate(MemberDto dto) throws Exception {
+			int result = dao.update(dto);
+			if (result > 0)
+				return true;
+		return false;
+	}
 		//회원 삭제하기
 		@Override
 		public boolean memberDelete(String id, String sid) throws Exception{
@@ -156,11 +152,6 @@ public class MemberServiceImpl implements MemberService {
 				return session.getRole();
 			
 			return null;
-		}
-		@Override
-		public boolean memberUpdate(HttpServletRequest req) throws Exception {
-			// TODO Auto-generated method stub
-			return false;
 		}
 	
 }

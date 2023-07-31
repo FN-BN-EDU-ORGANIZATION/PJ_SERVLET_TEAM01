@@ -22,7 +22,7 @@
 }
 
 /* 탑헤더 내 검색창 */
-.wrapper>header>.top-header>.search_box{
+.wrapper>header>.top-header>form .search_box{
     height: 38px;
     width: 500px;
     border: 3px solid rgb(92, 115, 6);
@@ -32,7 +32,7 @@
     padding-left: 10px;
 }
 
-.wrapper>header>.top-header>.search_box>div{
+.wrapper>header>.top-header>form .search_box>div{
     /* border: 1px solid rosybrown; */
     height: 35px;
     width: 110px;
@@ -45,7 +45,7 @@
     background-color: rgba(92, 115, 6, 0.43);
 }
 
-.wrapper>header>.top-header>.search_box>input {
+.wrapper>header>.top-header>form .search_box>input {
     height: 30px;
     width: 340px;
     border: 1px;
@@ -58,7 +58,7 @@
     font-family: 'NanumSquareBold';
 }
 
-.wrapper>header>.top-header>.search_box>a>img {
+.wrapper>header>.top-header>form .search_box>img {
     position: absolute;
     width: 30px;
     height: 30px;

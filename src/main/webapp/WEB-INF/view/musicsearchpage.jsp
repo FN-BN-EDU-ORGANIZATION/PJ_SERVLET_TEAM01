@@ -28,11 +28,13 @@
         <header>
             <div class="top-header">
                 <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <form action="<c:url value='/music/search.do' />" method="get">
                 <div class="search_box">
-                    <div>SEARCH</div>
-                    <input id="searchInput" type="text" placeholder="듣고 싶은 노래를 검색하세요!" value="<%= searchText %>">
-                    <a href=""><img src="resources/static/img/search.png" alt=""></a>
+                    <div class="search_btn" id="searchButton">SEARCH</div>
+                    <input id="searchInput" type="text" name="searchText" placeholder="듣고 싶은 노래를 검색하세요!" >
+                    <img id="searchIcon" src="resources/static/img/search.png" alt="" onclick="window.location.href='<c:url value="/music/search.do" />'" >
                 </div>
+                </form>
                 <ul>
                     <li><a href="" style="color:rgb(92, 115, 6); font-family: 'NanumSquareAceb';"><img
                                 src="resources/static/img/add.png" alt=""> 멤버십가입</a></li>
@@ -150,5 +152,72 @@
 
         </footer>
     </div>
+    
+    <!-- axios cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+            integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        // Main_Search_Page.jsp의 <script> 태그 안에 추가해주세요.
+        // 검색 아이콘 클릭 시 검색 결과 페이지로 이동
+        document.getElementById('searchIcon').addEventListener('click', function () {
+            searchMusic();
+        });
+
+        // input 요소에서 Enter 키를 누르면 검색 결과 페이지로 이동
+        document.getElementById('searchInput').addEventListener('keydown', function (event) {
+            if (event.keyCode === 13) {
+                searchMusic();
+            }
+        });
+
+        function searchMusic() {
+            const searchText = document.getElementById('searchInput').value;
+            const projectPath = '${pageContext.request.contextPath}';
+            const ServerPort = '${pageContext.request.serverPort}';
+
+            axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do", {
+                params: { searchText: searchText }
+            })
+            .then(response => {
+                const list = response.data;
+                const table_el = document.getElementById('searchTable');
+
+                // 기존 테이블의 내용 삭제
+                //table_el.innerHTML = '';
+                table_el.innerHTML = '<tr><th>No</th><th>Name</th><th>Artist</th><th>URL</th></tr>';
+
+                list.forEach((dto, index) => {
+                    // 검색 결과를 테이블에 추가
+                    const row = document.createElement('tr');
+                    const noCell = document.createElement('td');
+                    noCell.innerText = index + 1; // 검색 결과 순서에 따른 번호 출력
+                    const nameCell = document.createElement('td');
+                    nameCell.innerText = dto.name;
+                    const artistCell = document.createElement('td');
+                    artistCell.innerText = dto.artist;
+                    const urlCell = document.createElement('td');
+                    const urlLink = document.createElement('a');
+                    urlLink.href = dto.url;
+                    urlLink.innerText = dto.url;
+                    urlLink.target = '_blank';
+                    urlCell.appendChild(urlLink);
+
+                    row.appendChild(noCell);
+                    row.appendChild(nameCell);
+                    row.appendChild(artistCell);
+                    row.appendChild(urlCell);
+
+                    table_el.appendChild(row);
+                });
+            })
+            .catch(error => {
+                alert("fail..!");
+            });
+        }
+    </script>
+    
+    
 </body>
 </html>

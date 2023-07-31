@@ -25,6 +25,7 @@ public class MemberAddController implements SubController{
             String name = req.getParameter("name");
             String address = req.getParameter("addr");
             String phone = req.getParameter("phone");
+            String role = "ROLE_USER";
 
             // pw와 pwCheck가 일치하는지 검사 (클라이언트 측에서도 검사 가능하지만, 서버에서도 추가 검사를 수행하는 것이 좋음)
             String pwCheck = req.getParameter("pwc_input");
@@ -40,11 +41,12 @@ public class MemberAddController implements SubController{
             memberDto.setName(name);
             memberDto.setAddr(address);
             memberDto.setPhone(phone);
+            memberDto.setRole(role);
 
-            MemberDao memberDao = MemberDaoImpl.getInstance();
-            int result = memberDao.insert(memberDto);
+           // MemberDao memberDao = MemberDaoImpl.getInstance();
+            boolean result = service.memberJoin(memberDto);
 
-            if (result > 0) {
+            if (result) {
                 HttpSession session = req.getSession();
                 session.setAttribute("selectedMember", memberDto);
                 System.out.println("삽입 완료 ID: " + id);

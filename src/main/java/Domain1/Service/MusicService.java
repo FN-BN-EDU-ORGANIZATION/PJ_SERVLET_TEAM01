@@ -52,47 +52,46 @@ public class MusicService {
 
 	}
 
-	public List<MusicDto> searchTracks(String searchText, String memberId) throws Exception {
-		List<MusicDto> list = new ArrayList();
-		MemberDto dto = new MemberDto();
-		dto.setId(memberId);
-		try {
+		public List<MusicDto> searchTracks(String searchText, String memberId) throws Exception {
+			List<MusicDto> list = new ArrayList();
+			MemberDto dto = new MemberDto();
+			dto.setId(memberId);
+			try {
+		
+				String apiKey = "354ad741231e3c7ae853e84460461072";
+				String encodedTrack = searchText;
+				String apiUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + encodedTrack
+						+ "&limit=300&api_key=" + apiKey + "&format=json";
+				HttpClient httpClient = HttpClient.newHttpClient();
+				HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(apiUrl)).build();
 	
-			String apiKey = "354ad741231e3c7ae853e84460461072";
-			String encodedTrack = searchText;
-			
-			String apiUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + encodedTrack
-					+ "&limit=300&api_key=" + apiKey + "&format=json";
-			HttpClient httpClient = HttpClient.newHttpClient();
-			HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(apiUrl)).build();
-
-			HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-			String responseBody = response.body();
-
-			ObjectMapper objectMapper = new ObjectMapper();
-			JsonNode root = objectMapper.readTree(responseBody);
-			JsonNode trackMatches = root.path("results").path("trackmatches").path("track");
-
-			for (JsonNode trackNode : trackMatches) {
-				String name = trackNode.path("name").asText();
-				String artist = trackNode.path("artist").asText();
-				String url = trackNode.path("url").asText();
-				list.add(new MusicDto(name, artist, url));					
+				HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+				String responseBody = response.body();
+	
+				ObjectMapper objectMapper = new ObjectMapper();
+				JsonNode root = objectMapper.readTree(responseBody);
+				JsonNode trackMatches = root.path("results").path("trackmatches").path("track");
+	
+				for (JsonNode trackNode : trackMatches) {
+					String name = trackNode.path("name").asText();
+					String artist = trackNode.path("artist").asText();
+					String url = trackNode.path("url").asText();
+					list.add(new MusicDto(name, artist, url));					
+				}
+				
+//				if (memberId != null && !memberId.isEmpty()) {
+//		            dao.insert(dto, searchText);
+//		        }
+	
+				
+				
+			} catch (IOException | InterruptedException ex) {
+				ex.printStackTrace();
 			}
-			
-			if (memberId != null && !memberId.isEmpty()) {
-	            dao.insert(dto, searchText);
-	        }
-
-			
-			
-		} catch (IOException | InterruptedException ex) {
-			ex.printStackTrace();
+			// 리턴하기
+	
+			return list;
 		}
-		// 리턴하기
-
-		return list;
-	}
 
 	public List<MusicDto> openWebpage(String url) {
 		List<MusicDto> list = new ArrayList();
@@ -107,14 +106,5 @@ public class MusicService {
 		return list;
 	}
 	
-	public List<MusicSearchHistoryDto> getSearchHistoryList(HttpServletRequest req) throws Exception {
-		
-		System.out.println("MusicService's getSearchHistoryList");
-		HttpSession session = req.getSession();
-		String id = (String)session.getAttribute("ID");
-		
-		List<MusicSearchHistoryDto> list = dao.select(id);		
-		return list;
-	}
 
 }

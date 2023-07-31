@@ -20,11 +20,13 @@
         <header>
             <div class="top-header">
                 <a href=<c:url value="/indexlog.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <form action="<c:url value='/music/search.do' />" method="get">
                 <div class="search_box">
-                    <div>SEARCH</div>
-                    <input type="text" placeholder="듣고 싶은 노래를 검색하세요!">
-                    <a href=""><img src="resources/static/img/search.png" alt=""></a>
+                    <div class="search_btn" id="searchButton">SEARCH</div>
+                    <input id="searchInput" type="text" name="searchText" placeholder="듣고 싶은 노래를 검색하세요!" >
+                    <img id="searchbtn" src="resources/static/img/search.png" alt="" onclick="window.location.href='<c:url value="/music/search.do" />'" >
                 </div>
+                </form>
                 <ul>
                     <li><a href="" style="color:rgb(92, 115, 6); font-family: 'SDSamliphopangche_Basic'; font-size: 19px;"><img
                                 src="resources/static/img/add.png" alt=""> 멤버십가입</a></li>
@@ -94,7 +96,7 @@
                         <li>
                             <a href="">마이페이지</a>
                             <ul class="two--depth">
-                                <li><a href="">정보수정</a></li>
+                                <li><a href=<c:url value="/mypage.do" />>정보수정</a></li>
                                 <li><a href="">마이리스트</a></li>
                             </ul>
                         </li>
@@ -138,10 +140,10 @@
                     <div>
                         <br>
                         <a href=""><img src="resources/static/img/user.png" alt=""></a>
-                        <span>${ID}님, 환영합니다!</span>
+                        <span>${userDto.name}님, 환영합니다!</span>
                     </div>
                     <h4></h4>
-                    <button id="logout_btn" onclick="location.href='index.do'">LOGOUT</button>
+                    <button id="logout_btn" onclick="location.href='logout.do'">LOGOUT</button>
                 </article>
             </section>
             <section class="section2">

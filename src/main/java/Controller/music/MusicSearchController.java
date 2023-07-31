@@ -23,12 +23,18 @@ public class MusicSearchController implements SubController {
 		System.out.println("MusicSearchController execute!");
 		
 		try {
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json;charset=UTF-8");
+			
+			if(req.getMethod().equals("GET")) {
+			req.getRequestDispatcher("/WEB-INF/view/musicsearchpage.jsp").forward(req, resp);
+			
+			}
+		
+			resp.setContentType("application/json;charset=UTF-8");
 		
 		// 파라미터 추출
 		String searchText = req.getParameter("searchText");
 		String memberId =(String) req.getSession().getAttribute("ID");
+		System.out.println("searchText : " + searchText);
 		System.out.println("MusicSearchController MEMBER ID : " + memberId);
 		
 		// 입력값 검증
@@ -38,6 +44,7 @@ public class MusicSearchController implements SubController {
 		List<MusicDto> list = service.searchTracks(searchText, memberId);
 		
 		
+		PrintWriter out = resp.getWriter();
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonConverted = objectMapper.writeValueAsString(list);
 		
