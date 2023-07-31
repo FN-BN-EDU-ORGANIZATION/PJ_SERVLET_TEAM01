@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+	<style>
 		<%@include file="/resources/static/css/common.css" %>
 		<%@include file="/resources/static/css/header.css" %>
 		<%@include file="/resources/static/css/Main_Page_log.css" %>
@@ -20,11 +21,13 @@
         <header>
             <div class="top-header">
                 <a href=<c:url value="/indexlog.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                <form action="<c:url value='/music/search.do' />" method="get">
                 <div class="search_box">
-                    <div>SEARCH</div>
-                    <input type="text" placeholder="듣고 싶은 노래를 검색하세요!">
-                    <a href=""><img src="resources/static/img/search.png" alt=""></a>
+                    <div class="search_btn" id="searchButton">SEARCH</div>
+                    <input id="searchInput" type="text" name="searchText" placeholder="듣고 싶은 노래를 검색하세요!" >
+                    <img id="searchbtn" src="resources/static/img/search.png" alt="" onclick="window.location.href='<c:url value="/music/search.do" />'" >
                 </div>
+                </form>
                 <ul>
                     <li><a href="" style="color:rgb(92, 115, 6); font-family: 'SDSamliphopangche_Basic'; font-size: 19px;"><img
                                 src="resources/static/img/add.png" alt=""> 멤버십가입</a></li>
@@ -94,7 +97,7 @@
                         <li>
                             <a href="">마이페이지</a>
                             <ul class="two--depth">
-                                <li><a href="">정보수정</a></li>
+                                <li><a href=<c:url value="/mypage.do" />>정보수정</a></li>
                                 <li><a href="">마이리스트</a></li>
                             </ul>
                         </li>
@@ -107,41 +110,32 @@
         <main>
             <section class="section1">
                 <aside>오늘의 추천 앨범
-                    <div class="d1">
-                        <a href="">
-                            <img src="resources/static/img/Feeling.png" width="220px" height="220px" style="display: block;"
-                                alt="">
-                                <br>
-                                Feeling
-                        </a>
-                        <a href="">
-                            <img src="resources/static/img/NewJeans.png" width="220px" height="220px" style="display: block;"
-                                alt="">
-                                <br>
-                                NewJeans 1st EP 'NewJeans'
-                        </a>
-                        <a href="">
-                            <img src="resources/static/img/That's Not how This Works.png" width="220px" height="220px"
-                                style="display: block;" alt="">
-                                <br>
-                                That's Not how This Works
-                        </a>
-                        <!-- <div class="indicator">
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item active"></div>
-                            <div class="indicator-item"></div>
-                        </div> -->
+                    <div class="d1" style="overflow: hidden;">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide"><a><img src="resources/static/img/Feeling.png">Feeling</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/NewJeans.png">NewJeans 1st EP 'NewJeans'</a>
+                            </div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/That's Not how This Works.png">That's Not how
+                                    This Works</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song1.webp">NewJeans 'Super Shy'</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song3.jpg">I feel</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song6.jpg">UNFORGIVEN</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song10.webp">I've IVE</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song8.webp">MY WORLD - The 3rd Mini Album</a></div>
+                            <div class="swiper-slide"><a><img src="resources/static/img/song4.jpg">1집 Alone</a></div>
+                        </div>
                     </div>
                 </aside>
                 <article>워터멜론에서 즐거운 음악감상하세요!
                     <div>
                         <br>
                         <a href=""><img src="resources/static/img/user.png" alt=""></a>
-                        <span>${ID}님, 환영합니다!</span>
+                        <span>${userDto.name}님, 환영합니다!</span>
                     </div>
                     <h4></h4>
-                    <button id="logout_btn" onclick="location.href='index.do'">LOGOUT</button>
+                    <button id="logout_btn" onclick="location.href='logout.do'">LOGOUT</button>
                 </article>
             </section>
             <section class="section2">
@@ -249,5 +243,19 @@
 
         </footer>
     </div>
+    
+     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+    const swiper_multi_slider = new Swiper('.section1 .d1', {
+        // Optional parameters
+        direction: 'horizontal',
+        autoplay: { delay: 2000 },
+        loop: true,
+        slidesPerView: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+
+    });
+    </script>
 </body>
 </html>

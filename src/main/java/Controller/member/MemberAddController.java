@@ -21,8 +21,8 @@ public class MemberAddController implements SubController{
 		
 		try {
             String id = req.getParameter("id");
-            String pw = req.getParameter("pw");
             String name = req.getParameter("name");
+            String pw = req.getParameter("pw");
             String address = req.getParameter("addr");
             String phone = req.getParameter("phone");
             String role = "ROLE_USER";
@@ -50,11 +50,17 @@ public class MemberAddController implements SubController{
                 session.setAttribute("selectedMember", memberDto);
                 System.out.println("삽입 완료 ID: " + id);
                 resp.sendRedirect(req.getContextPath() + "/index.do");
+                resp.setContentType("text/plain");
+                resp.getWriter().write("true");
+                System.out.println("이상하다 왜 안될까?");
+                
                 
                 
             } else {
                 System.out.println("회원 삽입 실패.");
-                resp.sendRedirect(req.getContextPath() + "/join.do");
+                resp.sendRedirect(req.getContextPath() + "/join.do");	
+                resp.setContentType("text/plain");
+                resp.getWriter().write("false");
             }
         } catch (Exception e) {
             e.printStackTrace();

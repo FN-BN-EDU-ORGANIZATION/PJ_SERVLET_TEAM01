@@ -31,7 +31,7 @@
             
             <section class="join">
                 <h1>워터멜론과 함께 하세요!</h1>
-                <form action="${pageContext.request.contextPath}/member/add.do" method="post">
+                <form action="${pageContext.request.contextPath}/member/add.do" method="post" id="joinForm">
                 <ul>
                     <li><span>ID</span>
                         <!-- <span id="id_check">*id중복여부표시</span> -->
@@ -48,10 +48,39 @@
                     <li><input type="text" placeholder="동/호수 입력" title="주소입력"></li>
                     <li><span>PHONE</span>
                         <input type="text" name="phone" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
-                    <li><button id="join_btn" onclick="alert('WATERMELON의 멤버가 되신 것을 환영합니다 =D')">JOIN!</button></li>
+                    <li><button id="join_btn" onclick="button_function()">JOIN!</button></li>
                 </ul>
                 </form>
             </section>
+
+			<script>
+			
+			function button_function() {
+			    var id = document.getElementById("id_input").value;
+			    fetch("${pageContext.request.contextPath}/member/add.do", {
+			        method: "POST",
+			        headers: {
+			            "Content-Type": "application/x-www-form-urlencoded"
+			        },
+			        body: "id=" + encodeURIComponent(id)
+			    })
+			    .then(response => response.text())
+			    .then(data => {
+			        if (data.trim() === "true") { 
+			            alert("회원가입에 성공하였습니다!");
+			            window.location.href = "${pageContext.request.contextPath}/index.do";
+			        } else if (data.trim() === "false") { 
+			            alert("회원가입에 실패하였습니다.");
+			        } else {
+			            alert("서버 오류가 발생하였습니다.");
+			        }
+			    })
+			}
+
+					
+				
+			</script>
+
 
             <footer>
                 <div class="footer_line"></div>

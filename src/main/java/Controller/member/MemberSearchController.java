@@ -1,5 +1,6 @@
 package Controller.member;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,11 +21,12 @@ public class MemberSearchController implements SubController{
 		System.out.println("MemberSearchController execute!");
 
 		try {
-			String id = req.getParameter("id");
 			
-		
-			  MemberDto memberDto = new MemberDto();
-	          memberDto.getId(id);
+			MemberDto dto = new MemberDto();
+			
+			String id = req.getParameter("id");
+			String role = ((ServletRequest) resp).getParameter("role")
+;		
 			
 			
 //		    MemberDao memberDao = MemberDaoImpl.getInstance();
