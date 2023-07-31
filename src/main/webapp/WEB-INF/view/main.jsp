@@ -14,6 +14,35 @@
 	Role : ${ROLE} <br />
 	<hr />
 	
+	<div>
+	<hr/>
+	<a href="javascript:history.go(-1)">이전으로</a>
+	
+	<form action="member/delete.do" method="post">
+    	<input type="text" name="id" placeholder="사용자 검색">
+    	<button type="submit"  onclick="submitForm()">삭제</button>
+	</form>
+</div>
+	
+	dddddd
+	
+	<form action="member/search.do" method="post">
+    <input type="text" name="id" placeholder="검색어를 입력하세요">
+ 
+    <button type="submit"  onclick="submitSearch()">검색</button>
+	
+</form>
+	<form action="member/add.do" method="post">
+        아이디: <input type="text" name="id" required><br>
+        비밀번호: <input type="password" name="pw" required><br>
+        이름: <input type="text" name="name" required><br>
+        주소: <input type="text" name="addr" required><br>
+        전화번호: <input type="text" name="phone" required><br>
+        <input type="submit" value="회원 가입">
+    </form>
+	
+	
+	
 	<!-- 나의 메뉴이동 -->
 	<c:if test="${not empty ROLE}">
 	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>

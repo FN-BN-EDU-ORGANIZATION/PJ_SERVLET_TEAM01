@@ -41,4 +41,6 @@ public interface MemberService {
 
 	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
 
+
+
 }

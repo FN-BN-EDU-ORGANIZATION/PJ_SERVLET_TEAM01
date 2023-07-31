@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 		//회원 조회하기(한명) - 사서
 		@Override
 		public MemberDto memberSearchOne(String role, String id) throws Exception{
-			if(role.equals("ROLE_MANAGER")) 
+			if(role.equals("ROLE_MEMBER")) 
 				return dao.select(id);			
 			return null;
 		}

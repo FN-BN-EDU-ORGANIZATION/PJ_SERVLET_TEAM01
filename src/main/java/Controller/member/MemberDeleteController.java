@@ -20,10 +20,11 @@ public class MemberDeleteController implements SubController{
 		
 		try {
 			String Id = req.getParameter("id");
-			MemberDao memberDao = MemberDaoImpl.getInstance();
-			int result = memberDao.delete(Id);
+			String SID = req.getParameter("sid");
+//			MemberDao memberDao = MemberDaoImpl.getInstance();
+			boolean result = service.memberDelete(Id,SID);
 			
-			if(result>0) {
+			if(result) {
 				HttpSession session = req.getSession();
 				session.setAttribute("deleteMessage", "아웃!!");
 				System.out.println("아웃");

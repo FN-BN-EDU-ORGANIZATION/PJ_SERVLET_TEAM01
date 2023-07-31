@@ -20,12 +20,17 @@ public class MemberSearchController implements SubController{
 		System.out.println("MemberSearchController execute!");
 
 		try {
-		    String Id = req.getParameter("id");
-		    MemberDao memberDao = MemberDaoImpl.getInstance();
-		    MemberDto result = memberDao.select(Id);
-		    
+			String id = req.getParameter("id");
+			String role = req.getParameter("role");
+		
+			  MemberDto memberDto = new MemberDto();
+	            memberDto.setId(id);
+			
+			
+//		    MemberDao memberDao = MemberDaoImpl.getInstance();
+		    MemberDto result = service.memberSearchOne(id,role);
+		    System.out.println("야스오 나와");
 		    if (result != null) {
-//		    	System.out.println("검색완료 ID : "+ result);
 		        HttpSession session = req.getSession();
 		        session.setAttribute("selectedMember", result);
 		        System.out.println("검색완료 ID : "+ result);
