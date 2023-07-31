@@ -43,7 +43,11 @@ public class MemberAddController implements SubController{
             memberDto.setPhone(phone);
             memberDto.setRole(role);
 
+<<<<<<< HEAD
            // MemberDao memberDao = MemberDaoImpl.getInstance();
+=======
+//            MemberDao memberDao = MemberDaoImpl.getInstance();
+>>>>>>> branch 'ycy' of https://github.com/FN-BN-EDU-ORGANIZATION/PJ_SERVLET_TEAM01.git
             boolean result = service.memberJoin(memberDto);
 
             if (result) {
@@ -51,6 +55,8 @@ public class MemberAddController implements SubController{
                 session.setAttribute("selectedMember", memberDto);
                 System.out.println("삽입 완료 ID: " + id);
                 resp.sendRedirect(req.getContextPath() + "/index.do");
+                
+                
             } else {
                 System.out.println("회원 삽입 실패.");
                 resp.sendRedirect(req.getContextPath() + "/join.do");

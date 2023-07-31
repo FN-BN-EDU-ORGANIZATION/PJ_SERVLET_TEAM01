@@ -40,4 +40,11 @@ public interface MemberService {
 	//역할반환함수
 	String getRole(String sid);
 
+<<<<<<< HEAD
+=======
+	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
+
+
+
+>>>>>>> branch 'ycy' of https://github.com/FN-BN-EDU-ORGANIZATION/PJ_SERVLET_TEAM01.git
 }
