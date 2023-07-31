@@ -126,22 +126,17 @@
                                 <br>
                                 That's Not how This Works
                         </a>
-                        <!-- <div class="indicator">
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item"></div>
-                            <div class="indicator-item active"></div>
-                            <div class="indicator-item"></div>
-                        </div> -->
+                
                     </div>
                 </aside>
                 <article>워터멜론에서 즐거운 음악감상하세요!
                     <div>
                         <br>
                         <a href=""><img src="resources/static/img/user.png" alt=""></a>
-                        <span>${name}님, 환영합니다!</span>
+                        <span>${userDto.name}님, 환영합니다!</span>
                     </div>
                     <h4></h4>
-                    <button id="logout_btn" onclick="location.href='index.do'">LOGOUT</button>
+                    <button id="logout_btn" onclick="location.href='${pageContext.request.contextPath}/logout.do'">LOGOUT</button>
                 </article>
             </section>
             <section class="section2">

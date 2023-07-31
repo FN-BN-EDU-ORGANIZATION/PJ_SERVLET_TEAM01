@@ -51,15 +51,8 @@ public class LoginController  implements SubController{
 			//3 서비스 실행
 			boolean isLogin=false;
 		
-			try {
 				isLogin = service.login(req);
-				HttpSession session = req.getSession();
-				session.getAttribute(id);
-				session.getAttribute(pw);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 		
 		
 			//4 View로 전달 

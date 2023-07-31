@@ -41,10 +41,10 @@ public class MemberAddController implements SubController{
             memberDto.setAddr(address);
             memberDto.setPhone(phone);
 
-            MemberDao memberDao = MemberDaoImpl.getInstance();
-            int result = memberDao.insert(memberDto);
+           // MemberDao memberDao = MemberDaoImpl.getInstance();
+            boolean result = service.memberJoin(memberDto);
 
-            if (result > 0) {
+            if (result) {
                 HttpSession session = req.getSession();
                 session.setAttribute("selectedMember", memberDto);
                 System.out.println("삽입 완료 ID: " + id);

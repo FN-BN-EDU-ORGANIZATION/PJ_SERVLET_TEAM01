@@ -16,13 +16,13 @@ public class MemberPageController implements SubController {
 		try {
 			HttpSession session = req.getSession();
 			String role = (String) session.getAttribute("role");
-			if (role.equals("role_u")) {
+			if (role.equals("ROLE_USER")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
 //				session.setAttribute("name", name);
 //				session.setAttribute("addr", addr);
 //				session.setAttribute("phone", phone);
 				
-			} else if (role.equals("role_m")) {
+			} else if (role.equals("ROLE_MEMBER")) {
 				req.getRequestDispatcher("WEB-INF/view/member/member.jsp").forward(req, resp);
 			}
 		} catch (ServletException e) {
