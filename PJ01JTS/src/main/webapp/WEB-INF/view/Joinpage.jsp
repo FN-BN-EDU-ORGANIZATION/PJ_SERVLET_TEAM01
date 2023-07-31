@@ -21,9 +21,9 @@
             <!-- top-header -->
             <header>
                 <div class="log-header">
-                    <a href=<c:url value="/index.do" />><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+                    <a href=<c:url value="/index.do" />><img class="logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt=""></a>
                     <ul>
-                        <li><a href=""><img  src="resources/static/img/english.png" alt="">ENGLISH</a></li>
+                        <li><a href=""><img  src="${pageContext.request.contextPath}/resources/static/img/english.png" alt="">ENGLISH</a></li>
                     </ul>
                 </div>
                 <div class="logheader_line"></div>
@@ -45,7 +45,7 @@
                         <input type="text"  name="name" placeholder="이름" title="이름입력" required></li>
                     <li><span>ADDRESS</span>
                         <input id="addr_input"  name="addr"  type="text" placeholder="주소" title="주소입력" required><button id="addr_btn">주소검색</button></li>
-                    <li><input type="text" placeholder="동/호수 입력" title="주소입력"></li>
+                    <li><input name="addr" type="text" placeholder="동/호수 입력" title="주소입력"></li>
                     <li><span>PHONE</span>
                         <input type="text" name="phone" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
                     <li><button id="join_btn" onclick="alert('WATERMELON의 멤버가 되신 것을 환영합니다 =D')">JOIN!</button></li>
@@ -65,7 +65,7 @@
                 </div>
                 <p></p>
                 <div class="Site_info">
-                    <img id="footer_logo" src="resources/static/img/로고.png" alt="">
+                    <img id="footer_logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt="">
                     <span class="Sitename">(주)WATERMELON MUSIC</span>
                     <span>대구광역시 중구 중앙대로 366 반월센트럴타워 10층</span>
                     <span>대표이사 : 윤치연, 김예솔, 이헌지, 최정기</span>
@@ -77,5 +77,8 @@
                 
             </footer>
     </div>
+    
+    
+    
 </body>
 </html>

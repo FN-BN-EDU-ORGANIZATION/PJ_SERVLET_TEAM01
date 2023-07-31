@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,9 @@
 <div class="wrapper">
 <header>
    <div class="log-header">
-       <a href="./index.jsp"><img class="logo" src="resources/static/img/로고.png" alt=""></a>
+       <a href=<c:url value="/indexlog.do" />><img class="logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt=""></a>
        <ul>
-          <li><a href=""><img  src="resources/static/img/english.png" alt="">ENGLISH</a></li>
+          <li><a href=""><img  src="${pageContext.request.contextPath}/resources/static/img/english.png" alt="">ENGLISH</a></li>
        </ul>
     </div>
     <div class="logheader_line"></div>
@@ -28,17 +29,22 @@
 <section class="update">
     <h1>내 정보를 수정 해보세요!</h1>
    	<form action="${pageContext.request.contextPath}/member/update.do" method="post">
-     
+     <c:if test="${empty updatedDto}">
         <span class="title">ID</span><hr/><input type="text" name="id" value="${userDto.id}" /><br /> 
         <span class="title">NAME</span><hr/><input type="text" name="name" value="${userDto.name}" /><br /> 
         <span class="title">PW</span><hr/><input type="password" name="pw" value="${userDto.pw}" /><br />
         <span class="title">ADDR</span><hr/><input type="text" name="addr" value="${userDto.addr}" /><br />
         <span class="title">PHONE</span><hr/><input type="text" name="phone" value="${userDto.phone}" />
         <input id="update_btn" type="submit" value="수정하기" />
-    
-        
-        
-        
+    </c:if>
+    <c:if test="${not empty updatedDto}">
+        <span class="title">ID</span><hr/><input type="text" name="id" value="${updatedDto.id}" /><br /> 
+        <span class="title">NAME</span><hr/><input type="text" name="name" value="${updatedDto.name}" /><br /> 
+        <span class="title">PW</span><hr/><input type="password" name="pw" value="${updatedDto.pw}" /><br />
+        <span class="title">ADDR</span><hr/><input type="text" name="addr" value="${updatedDto.addr}" /><br />
+        <span class="title">PHONE</span><hr/><input type="text" name="phone" value="${updatedDto.phone}" />
+        <input id="update_btn" type="submit" value="수정하기" />
+    </c:if>	 
     </form>
 
 </section>
@@ -56,7 +62,7 @@
     </div>
     <p></p>
     <div class="Site_info">
-        <img id="footer_logo" src="resources/static/img/로고.png" alt="">
+        <img id="footer_logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt="">
         <span class="Sitename">(주)WATERMELON MUSIC</span>
         <span>대구광역시 중구 중앙대로 366 반월센트럴타워 10층</span>
         <span>대표이사 : 윤치연, 김예솔, 이헌지, 최정기</span>

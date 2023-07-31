@@ -52,7 +52,7 @@
 		<li><span class="title">ADDR</span><hr/><span class="info">${updatedDto.addr}</span></li>
 		<br />
 		<li><span class="title">PHONE</span><hr/><span class="info">${updatedDto.phone}</span></li>
-		<button id="back_btn" onclick= "location.href='${pageContext.request.contextPath}/main.do'">이전</button>
+		<button id="back_btn" onclick= "location.href='${pageContext.request.contextPath}/indexlog.do'">이전</button>
 		<button id="update_btn" onclick = "location.href='${pageContext.request.contextPath}/member/update.do'">정보수정</button>
 		<br />
 	</c:if>

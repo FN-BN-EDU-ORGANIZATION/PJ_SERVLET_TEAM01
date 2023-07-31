@@ -1,5 +1,8 @@
 package Controller.member;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +21,18 @@ public class MemberAddController implements SubController{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("MemberAddController execute!");
+		 if(req.getMethod().equals("GET")) {
+	        	try {
+					req.getRequestDispatcher("/WEB-INF/view/Joinpage.jsp").forward(req, resp);
+					return;	
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
 		
 		try {
             String id = req.getParameter("id");
@@ -30,7 +45,7 @@ public class MemberAddController implements SubController{
             String pwCheck = req.getParameter("pwc_input");
             if (!pw.equals(pwCheck)) {
                 System.out.println("비밀번호 확인이 일치하지 않습니다.");
-                resp.sendRedirect(req.getContextPath() + "/join.do");
+                resp.sendRedirect(req.getContextPath() + "/member/add.do");
                 return;
             }
 

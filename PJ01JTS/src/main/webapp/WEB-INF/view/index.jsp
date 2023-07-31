@@ -25,7 +25,7 @@
                 <div class="search_box">
                     <div class="search_btn">SEARCH</div>
                     <input id="searchInput" type="text" placeholder="듣고 싶은 노래를 검색하세요!" >
-                    <a href=<c:url value="/music/searchpage.do" />><img src="resources/static/img/search.png" alt=""></a>
+                    <a href=<c:url value="/music/search.do" />><img src="resources/static/img/search.png" alt=""></a>
                 </div>
                 <ul>
                     <li><a href=""
@@ -135,7 +135,7 @@
                     <a href="">아이디</a>
                     <span>/</span>
                     <a href="">비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    <a href=<c:url value="/join.do" />>회원가입</a>
+                    <a href=<c:url value="/member/add.do" />>회원가입</a>
                 </article>
             </section>
             <section class="section2">

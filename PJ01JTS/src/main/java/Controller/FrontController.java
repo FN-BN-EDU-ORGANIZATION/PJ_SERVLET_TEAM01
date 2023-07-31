@@ -39,7 +39,7 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
 		// join
-		map.put(projectPath + "/join.do", new JoinController());
+//		map.put(projectPath + "/join.do", new JoinController());
 	
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		

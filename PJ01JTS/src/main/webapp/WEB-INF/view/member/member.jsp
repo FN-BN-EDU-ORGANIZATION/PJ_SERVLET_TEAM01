@@ -24,6 +24,8 @@ ID : ${ID}
 <form action="member/search.do" method="post">
     <input type="text" name="id" placeholder="검색어를 입력하세요">
     <button type="submit"  onclick="submitSearch()">검색</button>
+    <hr />
+    ${msg }
 </form>
 
 <!-- <hr />

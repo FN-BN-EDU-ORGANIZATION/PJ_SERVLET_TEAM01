@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>WaterMelon</title>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
 </head>
 <body>
 	<h1>MAIN</h1>
@@ -13,39 +13,26 @@
 	Account : ${id} <br /> 
 	Role : ${role} <br />
 	<hr />
-	
-	<!-- ë‚˜ì˜ ë©”ë‰´ì´ë™ -->
-	<c:if test="${not empty role}">
-	<a href=<c:url value="/mypage.do" /> >ë‚˜ì˜ë©”ë‰´ë¡œ ì´ë™</a></br>
-	</c:if>
-	<hr />
-	
-	<c:if test="${empty role}">
-	<a href=<c:url value="/member/add.do" /> >íšŒì›ê°€ì…</a></br>
-	</c:if>
-	<hr />
-	
-	<!-- ìˆ˜ì •ëœ ë¶€ë¶„: ê²€ìƒ‰ ë‚´ì—­ ì¡°íšŒ ë¶€ë¶„ì„ ê°ì‹¸ëŠ” divì— classë¥¼ ì¶”ê°€í•˜ê³ , JavaScriptë¡œ í•´ë‹¹ ìš”ì†Œë¥¼ ì¡°ì‘í•˜ë„ë¡ í•¨ -->
-	<div class="history" id="historySectionWrapper" style="display: ${empty id ? 'none' : 'block'};">
-		<h3>ê²€ìƒ‰ ë‚´ì—­ ì¡°íšŒ</h3>
-		<button class="history_btn">ì¡°íšŒí•˜ê¸°</button>
-		<div class="historyList"></div>
-	</div>
-	
-	
-	<hr />
 
+	<!-- ³ªÀÇ ¸Ş´ºÀÌµ¿ -->
+<c:if test="${not empty role}">
+	<a href=<c:url value="/mypage.do" /> >³ªÀÇ¸Ş´º·Î ÀÌµ¿</a></br>
+</c:if>
 
+aa
+<c:if test="${empty role}">
+	<a href=<c:url value="/member/add.do" /> >È¸¿ø°¡ÀÔ</a></br>
+</c:if>
 
-
+	
 	<div>
 		<div class="search_block">
-			<input type="text" id="searchInput" placeholder="keyword"
+			<input type="text" placeholder="keyword"
 				style="width: 1500px; margin-bottom: 10px;" />
-			<button class="search_btn">ê²€ìƒ‰</button>
+			<button class="search_btn">°Ë»ö</button>
 		</div>
 		<div class="show_block"
-			style="width: 1600px; height: 500px; border: 1px solid; overflow: auto;">
+			style="width: 1600px; height: 700px; border: 1px solid; overflow: auto;">
 			<table>
 				<tr>
 					<th>Name</th>
@@ -55,26 +42,26 @@
 			</table>
 		</div>
 	</div>
-
-
-	<hr />
-	<c:if test="${empty role}">
-		<a href=<c:url value="/login.do" />>LOGIN</a>
-		</br>
-	</c:if>
-	<c:if test="${not empty role}">
-		<a href=<c:url value="/logout.do" />>LOGOUT</a>
-		</br>
-	</c:if>
 	
-	<form action="member/add.do" method="post">
-        ì•„ì´ë””: <input type="text" name="id"><br>
-        ë¹„ë°€ë²ˆí˜¸: <input type="password" name="pw"><br>
-        ì´ë¦„: <input type="text" name="name" ><br>
-        ì£¼ì†Œ: <input type="text" name="addr" ><br>
-        ì „í™”ë²ˆí˜¸: <input type="text" name="phone"><br>
-        <input type="submit" value="íšŒì› ê°€ì…">
+	
+<hr/>
+<c:if test="${empty ROLE}">
+	<a href=<c:url value="/login.do" /> >LOGIN</a></br>
+</c:if>
+<c:if test="${not empty ROLE}">
+	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
+</c:if>
+
+<form action="member/add.do" method="post">
+        ¾ÆÀÌµğ: <input type="text" name="id" required><br>
+        ºñ¹Ğ¹øÈ£: <input type="password" name="pw" required><br>
+        ÀÌ¸§: <input type="text" name="name" required><br>
+        ÁÖ¼Ò: <input type="text" name="addr" required><br>
+        ÀüÈ­¹øÈ£: <input type="text" name="phone" required><br>
+        <input type="submit" value="È¸¿ø °¡ÀÔ">
     </form>
+
+
 
 
 
@@ -86,7 +73,6 @@
 
 	<script>
 	const search_btn_el = document.querySelector('.search_btn');
-	const search_input_el = document.getElementById('searchInput');
 	search_btn_el.addEventListener('click',function(){
 		const projectPath = '${pageContext.request.contextPath}';	
 		const ServerPort = '${pageContext.request.serverPort}';
@@ -94,22 +80,30 @@
 		//const show_block_el = document.querySelector('.show_block');
 		const table_el = document.querySelector('.show_block table');
 		
-		// ì´ì „ ê²€ìƒ‰ ê²°ê³¼ë¥¼ ì§€ì›€
+		// ÀÌÀü °Ë»ö °á°ú¸¦ Áö¿ò
     	//show_block_el.innerHTML = '';
 		table_el.innerHTML = '<tr><th>Name</th><th>Artist</th><th>URL</th></tr>';
     
 		
-		 // input ìš”ì†Œì—ì„œ ê²€ìƒ‰ì–´ë¥¼ ê°€ì ¸ì˜´
+		 // input ¿ä¼Ò¿¡¼­ °Ë»ö¾î¸¦ °¡Á®¿È
     	const searchText = document.querySelector('input[type="text"]').value;
-    	console.log("searchText",searchText);
+    
 		
 		axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do",{
-			params: { searchText: searchText } // ê²€ìƒ‰ì–´ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
+			params: { searchText: searchText } // °Ë»ö¾î¸¦ ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş
 		})
 		.then(response=>{ 
 			const list = response.data;
 			
 			list.forEach((dto)=>{
+				
+				/* const dto_el = document.createElement('div');
+				dto_el.classList.add("item");
+				
+				dto_el.innerHTML+="<span>"+dto.name+"</span> ";
+				dto_el.innerHTML+="<span>"+dto.artist+"</span> ";
+				dto_el.innerHTML+="<span>"+dto.url+"</span> <br/>";
+				show_block_el.appendChild(dto_el); */
 				
 				const row = document.createElement('tr');
 	            
@@ -133,96 +127,10 @@
 	            table_el.appendChild(row);
 			})
 			
-			})		//ì„±ê³µì‹œ ì²˜ë¦¬ë¡œì§
-		.catch(error=>{alert("fail..!");})		//ì‹¤íŒ¨ì‹œ ì²˜ë¦¬ë¡œì§
+			})		//¼º°ø½Ã Ã³¸®·ÎÁ÷
+		.catch(error=>{alert("fail..!");})		//½ÇÆĞ½Ã Ã³¸®·ÎÁ÷
 		
 	})
-	
-	search_input_el.addEventListener('keydown', function (event) {
-		const projectPath = '${pageContext.request.contextPath}';
-		const ServerPort = '${pageContext.request.serverPort}';
-		console.log("í™•ì¸ : " ,typeof event.keyCode);
-		if (event.keyCode === 13) {
-			
-			//const show_block_el = document.querySelector('.show_block');
-			const table_el = document.querySelector('.show_block table');
-			
-			// ì´ì „ ê²€ìƒ‰ ê²°ê³¼ë¥¼ ì§€ì›€
-	    	//show_block_el.innerHTML = '';
-			table_el.innerHTML = '<tr><th>Name</th><th>Artist</th><th>URL</th></tr>';
-	    
-			
-			 // input ìš”ì†Œì—ì„œ ê²€ìƒ‰ì–´ë¥¼ ê°€ì ¸ì˜´
-	    	const searchText = document.querySelector('input[type="text"]').value;
-	    
-			
-			axios.get("http://localhost:" + ServerPort + projectPath + "/music/search.do",{
-				params: { searchText: searchText } // ê²€ìƒ‰ì–´ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
-			})
-			.then(response=>{ 
-				const list = response.data;
-				
-				list.forEach((dto)=>{
-					
-					const row = document.createElement('tr');
-		            
-		            const nameCell = document.createElement('td');
-		            nameCell.innerText = dto.name;
-		            
-		            const artistCell = document.createElement('td');
-		            artistCell.innerText = dto.artist;
-		            
-		            const urlCell = document.createElement('td');
-		            const urlLink = document.createElement('a');
-		            urlLink.href = dto.url;
-		            urlLink.innerText = dto.url;
-		            urlLink.target = '_blank';
-		            urlCell.appendChild(urlLink);
-		            
-		            row.appendChild(nameCell);
-		            row.appendChild(artistCell);
-		            row.appendChild(urlCell);
-		            
-		            table_el.appendChild(row);
-				})
-				
-				})		
-			.catch(error=>{alert("fail..!");})
-		}
-	});
-	
-	const historyBtn = document.querySelector('.history_btn');
-	
-	
-	historyBtn.addEventListener('click', function() {
-		const projectPath='${pageContext.request.contextPath}';
-		const ServerPort = '${pageContext.request.serverPort}';
-		
-		axios.get('http://localhost:'+ServerPort+projectPath+'/music/searchhistory.do')
-		.then(response=>{
-			console.log('response',response);
-			
-			const historyList = document.querySelector('.historyList');
-			const list = response.data;
-			list.forEach((dto)=>{
-			
-				console.log('dto',dto);
-				
-				const dto_el = document.createElement('div');
-				dto_el.classList.add("item");
-				
-				dto_el.innerHTML+="<span>"+dto.historyNo+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.id+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.searchHistory+"</span> <br/>";
-				historyList.appendChild(dto_el); 
-			}) 
-		})
-		.catch(error=>{console.log('error',error)})
-	  });
-	
-	
-	
-	
 </script>
 
 </body>
