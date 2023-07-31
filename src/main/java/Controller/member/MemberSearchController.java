@@ -21,10 +21,10 @@ public class MemberSearchController implements SubController{
 
 		try {
 			String id = req.getParameter("id");
-			String role = req.getParameter("role");
+			
 		
 			  MemberDto memberDto = new MemberDto();
-	            memberDto.setId(id);
+	          memberDto.getId(id);
 			
 			
 //		    MemberDao memberDao = MemberDaoImpl.getInstance();
