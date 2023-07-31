@@ -28,12 +28,17 @@
 <section class="update">
     <h1>내 정보를 수정 해보세요!</h1>
    	<form action="${pageContext.request.contextPath}/member/update.do" method="post">
+     
         <span class="title">ID</span><hr/><input type="text" name="id" value="${userDto.id}" /><br /> 
         <span class="title">NAME</span><hr/><input type="text" name="name" value="${userDto.name}" /><br /> 
         <span class="title">PW</span><hr/><input type="password" name="pw" value="${userDto.pw}" /><br />
         <span class="title">ADDR</span><hr/><input type="text" name="addr" value="${userDto.addr}" /><br />
         <span class="title">PHONE</span><hr/><input type="text" name="phone" value="${userDto.phone}" />
         <input id="update_btn" type="submit" value="수정하기" />
+    
+        
+        
+        
     </form>
 
 </section>
