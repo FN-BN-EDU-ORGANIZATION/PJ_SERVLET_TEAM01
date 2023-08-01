@@ -55,27 +55,29 @@
 
 			<script>
 			
-			function button_function() {
-			    var id = document.getElementById("id_input").value;
-			    fetch("${pageContext.request.contextPath}/member/add.do", {
-			        method: "POST",
-			        headers: {
-			            "Content-Type": "application/x-www-form-urlencoded"
-			        },
-			        body: "id=" + encodeURIComponent(id)
-			    })
-			    .then(response => response.text())
-			    .then(data => {
-			        if (data.trim() === "true") { 
-			            alert("회원가입에 성공하였습니다!");
-			            window.location.href = "${pageContext.request.contextPath}/index.do";
-			        } else if (data.trim() === "false") { 
-			            alert("회원가입에 실패하였습니다.");
-			        } else {
-			            alert("서버 오류가 발생하였습니다.");
-			        }
-			    })
-			}
+			document.getElementById("join_btn").onclick = function () {
+		        // Ajax 요청을 보내는 부분
+		        var xhr = new XMLHttpRequest();
+		        xhr.onreadystatechange = function () {
+		            if (xhr.readyState === 4) {
+		                if (xhr.status === 200) {
+		                    // 서버에서 "true" 또는 "false" 메시지를 받았을 때 처리
+		                    var responseText = xhr.responseText;
+		                    if (responseText === "true") {
+		                        alert("워터멜론의 멤버가 되신 것을 환영합니다 =D");
+		                        // 여기에 필요한 추가적인 처리를 넣으세요 (예: 페이지 이동 등)
+		                    } else {
+		                        alert("회원가입에 실패하였습니다. 다시 시도해주세요.");
+		                    }
+		                } else {
+		                    alert("서버와의 통신에 문제가 발생하였습니다. 다시 시도해주세요.");
+		                }
+		            }
+		        };
+		        xhr.open("POST", "/your_server_endpoint", true);
+		        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		        xhr.send(/* 여기에 필요한 데이터를 넣으세요 */);
+		    };
 
 					
 				

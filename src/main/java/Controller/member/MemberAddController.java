@@ -1,5 +1,7 @@
 package Controller.member;
 
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,11 +28,18 @@ public class MemberAddController implements SubController{
             String address = req.getParameter("addr");
             String phone = req.getParameter("phone");
             String role = "ROLE_USER";
+            String phoneRegex = "^\\d{3}-\\d{3,4}-\\d{4}$";
+            boolean isPhoneValid = Pattern.matches(phoneRegex, phone);
 
             // pw와 pwCheck가 일치하는지 검사 (클라이언트 측에서도 검사 가능하지만, 서버에서도 추가 검사를 수행하는 것이 좋음)
             String pwCheck = req.getParameter("pwc_input");
             if (!pw.equals(pwCheck)) {
                 System.out.println("비밀번호 확인이 일치하지 않습니다.");
+                resp.sendRedirect(req.getContextPath() + "/join.do");
+                return;
+            }
+            if (!isPhoneValid) {
+                System.out.println("전화번호 형식이 올바르지 않습니다. (000-0000-0000 형식으로 입력하세요.)");
                 resp.sendRedirect(req.getContextPath() + "/join.do");
                 return;
             }
