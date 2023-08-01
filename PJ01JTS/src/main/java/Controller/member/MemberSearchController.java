@@ -1,12 +1,12 @@
 package Controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
-import Domain1.Dao.MemberDao;
-import Domain1.Dao.MemberDaoImpl;
 import Domain1.Dto.MemberDto;
 import Domain1.Service.MemberService;
 import Domain1.Service.MemberServiceImpl;
@@ -47,5 +47,9 @@ public class MemberSearchController implements SubController{
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 }

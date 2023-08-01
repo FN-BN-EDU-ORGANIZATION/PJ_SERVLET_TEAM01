@@ -43,14 +43,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 회원 조회하기(전체조회) - 사서
-	@Override
-	public List<MemberDto> memberSearch(String sid) throws Exception {
-		String role = this.getRole(sid);
-		if (role.equals("ROLE_MEMBER"))
-			return dao.select();
-		return null;
-	}
+//	@Override
+//	public List<MemberDto> memberSearch(String sid) throws Exception {
+//		String role = this.getRole(sid);
+//		if (role.equals("ROLE_MEMBER"))
+//			return dao.select();
+//		return null;
+//	}
 
+	public List<MemberDto> memberSearch(HttpServletRequest req) throws Exception{
+		HttpSession session = req.getSession();
+		List<MemberDto> list = dao.select();
+		return list;
+	}
+	
 	// 회원 조회하기(한명) - 사서
 	@Override
 	public MemberDto memberSearchOne(String role, String id) throws Exception {

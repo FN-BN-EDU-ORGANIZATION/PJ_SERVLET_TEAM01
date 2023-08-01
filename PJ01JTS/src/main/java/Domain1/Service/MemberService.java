@@ -12,7 +12,8 @@ public interface MemberService {
 	boolean memberJoin(MemberDto dto) throws Exception;
 
 	//회원 조회하기(전체조회) - 사서
-	List<MemberDto> memberSearch(String sid) throws Exception;
+//	List<MemberDto> memberSearch(String sid) throws Exception;
+	List<MemberDto> memberSearch(HttpServletRequest req) throws Exception;
 
 	//회원 조회하기(한명) - 사서
 	MemberDto memberSearchOne(String role, String id) throws Exception;

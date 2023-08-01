@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.member.MemberAddController;
+import Controller.member.MemberAllSearchController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
 import Controller.member.MemberSearchController;
@@ -33,6 +34,7 @@ public class FrontController extends HttpServlet{
 		String projectPath = config.getServletContext().getContextPath();	// /JAVA_TO_SERVLET/
 		
 		//member
+		map.put(projectPath + "/member/allsearch.do", new MemberAllSearchController());
 		map.put(projectPath + "/member/search.do", new MemberSearchController());
 		map.put(projectPath + "/member/add.do", new MemberAddController());
 		map.put(projectPath + "/member/update.do", new MemberUpdateController());
