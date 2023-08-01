@@ -19,10 +19,21 @@ public class MemberDeleteController implements SubController{
 		System.out.println("MemberDeleteController execute!");
 		
 		try {
-			String Id = req.getParameter("id");
-			String SID = req.getParameter("sid");
+			String id = req.getParameter("id");
+			String sid = req.getParameter("sid");
+			
+			if (id != null && !id.isEmpty()) {
+                sid = ""; // id 입력 시, sid 초기화
+            } else if (sid != null && !sid.isEmpty()) {
+                id = ""; // sid 입력 시, id 초기화
+            } else {
+                System.out.println("id 또는 sid를 입력해주세요.");
+                resp.sendRedirect(req.getContextPath() + "/mypage.do");
+                return;
+            }
+			
 //			MemberDao memberDao = MemberDaoImpl.getInstance();
-			boolean result = service.memberDelete(Id,SID);
+			boolean result = service.memberDelete(id,sid);
 			
 			if(result) {
 				HttpSession session = req.getSession();
