@@ -41,16 +41,22 @@
 
 <form action="member/search.do" method="post">
    <div class="search_block">
-    <input type="text" name="id" placeholder="검색어를 입력하세요">
-    <button class="search_btn" type="submit"  onclick="submitSearch()">검색</button>
+    <input type="text" name="id" placeholder="검색할 id를 입력하세요">
+    <button class="oneuser" type="submit" >검색</button>
     </div>
-    <div class="show_block"></div>
+    <div class="oneshowBlock"></div>
     <hr />
-    ${msg }
-</form>
+</form> 
+
+
+<div class="oneshowBlock">
+    <!-- 검색 결과를 보여줄 영역 -->
+</div>
+<hr />
+
 
 <hr />
-<button class="alluser" class="width:500px; border : 1px solid;">모든회원검색</button>
+<button class="alluser" >모든회원검색</button>
 <div class="showBlock"></div>
 <hr />
 
@@ -84,6 +90,47 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+/*  const onesearch_btn_el = document.querySelector('.oneuser');
+onesearch_btn_el.addEventListener('click', function(){
+	console.log('oneuser clicked..');
+	const projectPath = '${pageContext.request.contextPath}';
+	  //axios
+	  axios.get("http://localhost:9090" + projectPath + "/member/search.do")
+	    .then(response => {
+	      console.log('response', response);
+
+	      const oneshowBlock_el = document.querySelector('.oneshowBlock'); 
+	      
+	      // 기존 내용을 모두 지우기
+	      oneshowBlock_el.innerHTML = '';
+	      
+	        const list = response.data;
+	      list.forEach((dto) => {
+
+	        console.log('dto', dto);
+	     
+	        const dto_el = document.createElement('div');
+	        dto_el.classList.add("item");
+
+	        dto_el.innerHTML += "<span>" + dto.id + "</span> ";
+	        dto_el.innerHTML += "<span>" + dto.role + "</span> ";
+	        dto_el.innerHTML += "<span>" + dto.name + "</span> ";
+	        dto_el.innerHTML += "<span>" + dto.addr + "</span>";
+	        dto_el.innerHTML += "<span>" + dto.phone + "</span><br/>";
+	        oneshowBlock_el.appendChild(dto_el);
+	        
+	      });
+	    })
+	    .catch(error => {
+	      console.log("조회 실패..");
+	    });
+}); 
+ */
+
+
+
+
+
 
 const allsearch_btn_el = document.querySelector('.alluser');
 allsearch_btn_el.addEventListener('click', function () {

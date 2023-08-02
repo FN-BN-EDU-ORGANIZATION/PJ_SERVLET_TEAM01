@@ -1,17 +1,20 @@
 package Controller.member;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import Controller.SubController;
 import Domain1.Dto.MemberDto;
 import Domain1.Service.MemberService;
 import Domain1.Service.MemberServiceImpl;
 
-public class MemberSearchController implements SubController{
+public class MemberSearchController implements SubController {
 
 	private MemberService service = MemberServiceImpl.getInstance();
 
@@ -20,36 +23,33 @@ public class MemberSearchController implements SubController{
 		System.out.println("MemberSearchController execute!");
 
 		try {
-			MemberDto memberDto = new MemberDto();
-			String id = req.getParameter("id");
-			String role = memberDto.getRole();
-		
-	            memberDto.setId(id);
-	            memberDto.setRole(role);
-	         
-	           
+			MemberDto userInfo = service.memberSearchOne(req);
+			System.out.println(userInfo);
 			
-			
-//		    MemberDao memberDao = MemberDaoImpl.getInstance();
-		    MemberDto result = service.memberSearchOne(id,role);
-		    System.out.println("야스오 나와");
-		    System.out.println(id+role);
-		    if (result != null) {
-		        HttpSession session = req.getSession();
-		        session.setAttribute("selectedMember", result);
-		        System.out.println("검색완료 ID : "+ result);
-		        resp.sendRedirect(req.getContextPath() + "/mypage.do");
-		    } else {
-		        System.out.println("회원을 찾을 수 없습니다.");
-		        req.setAttribute("msg", "회원을 찾을 수 없습니다.");
-		        resp.sendRedirect(req.getContextPath() + "/mypage.do");
-		    }
+
+			// JAVA -> JSON 변환
+			ObjectMapper objectMapper = new ObjectMapper(); // 날짜정보도 포함되어있음..
+
+			String jsonConverted = objectMapper.writeValueAsString(userInfo);
+
+			// 4 View로 전달
+			resp.setContentType("application/json");
+			PrintWriter out = resp.getWriter();
+			out.print(jsonConverted);
+
+			if (userInfo != null) {
+				HttpSession session = req.getSession();
+				session.setAttribute("userInfo", userInfo);
+				System.out.println("검색완료 ID : " + userInfo.getId());
+				resp.sendRedirect(req.getContextPath() + "/mypage.do");
+			} else {
+				System.out.println("회원을 찾을 수 없습니다.");
+				req.setAttribute("msg", "회원을 찾을 수 없습니다.");
+				resp.sendRedirect(req.getContextPath() + "/mypage.do");
+			}
 		} catch (Exception e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
-		
-		
-		
-		
+
 	}
 }
