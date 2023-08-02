@@ -1,11 +1,11 @@
 package Controller.member;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,14 +23,14 @@ public class MemberAllSearchController implements SubController{
 		System.out.println("MemberAllSearchController execute!");
 		
 		try {
-			List<MemberDto> list = service.memberSearch(req);
-			System.out.println(list);
+			List<MemberDto> userlist = service.memberSearch(req);
+			System.out.println(userlist);
+			
 			
 			// JAVA -> JSON 변환
 			ObjectMapper objectMapper = new ObjectMapper();	//날짜정보도 포함되어있음..
 			
-			String jsonConverted = objectMapper.writeValueAsString(list);
-			System.out.println(jsonConverted);
+			String jsonConverted = objectMapper.writeValueAsString(userlist);
 			
 			// 4 View로 전달			
 			resp.setContentType("application/json");

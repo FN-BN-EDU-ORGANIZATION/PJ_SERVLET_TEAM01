@@ -36,17 +36,24 @@
 	</form>
 </div>
 
-<!-- <form action="member/allsearch.do" method="post">
-    <button class="allser" onclick="submitSearch()">모든회원검색</button>
-    <hr />
-</form> -->
+
+
 
 <form action="member/search.do" method="post">
+   <div class="search_block">
     <input type="text" name="id" placeholder="검색어를 입력하세요">
-    <button type="submit"  onclick="submitSearch()">검색</button>
+    <button class="search_btn" type="submit"  onclick="submitSearch()">검색</button>
+    </div>
+    <div class="show_block"></div>
     <hr />
     ${msg }
 </form>
+
+<hr />
+<button class="alluser" class="width:500px; border : 1px solid;">모든회원검색</button>
+<div class="showBlock"></div>
+<hr />
+
 </section>
 <footer>
     <div class="footer_line"></div>
@@ -72,51 +79,50 @@
 </footer>
 </div>
 
-<hr />
-회원조회하기
-<div class="search_block">
-	<button class="allsearch_btn">조회하기</button>
-</div>
-<div class="show_block">
-	
-</div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-const allsearch_btn_el = document.querySelector('.allsearch_btn');
-const show_block_el = document.querySelector('.show_block'); // 데이터가 표시될 컨테이너 요소를 선택합니다.
 
-const projectPath = '${pageContext.request.contextPath}';
-allsearch_btn_el.addEventListener('click', function() {
-    //axios
-    axios.get("http://localhost:9090" + projectPath + "/member/allsearch.do")
+const allsearch_btn_el = document.querySelector('.alluser');
+allsearch_btn_el.addEventListener('click', function () {
+  console.log('alluser clicked..');
+  const projectPath = '${pageContext.request.contextPath}';
+  //axios
+  axios.get("http://localhost:9090" + projectPath + "/member/allsearch.do")
     .then(response => {
-        console.log("success!", response.data);
+      console.log('response', response);
 
-        const list = JSON.parse(response.data);
-        console.log('list', list);
-        show_block_el.innerHTML = "";
-        list.forEach((dto) => {
+      const showBlock_el = document.querySelector('.showBlock');
+      
+        // 기존 내용을 모두 지우기
+      showBlock_el.innerHTML = '';
+      
+        const list = response.data;
+      list.forEach((dto) => {
 
-            const dto_el = document.createElement('div');
-            dto_el.classList.add("item");
+        console.log('dto', dto);
+     
+        const dto_el = document.createElement('div');
+        dto_el.classList.add("item");
 
-            // 데이터를 생성한 요소에 추가합니다
-            dto_el.innerHTML += "<span>" + dto.id + "</span>";
-            dto_el.innerHTML += "<span>" + dto.role + "</span>";
-            dto_el.innerHTML += "<span>" + dto.name + "</span>";
-            dto_el.innerHTML += "<span>" + dto.addr + "</span>";
-            dto_el.innerHTML += "<span>" + dto.phone + "</span><br/>";
-
-            // 생성한 요소를 show_block 컨테이너에 추가합니다
-            show_block_el.appendChild(dto_el);
-        });
+        dto_el.innerHTML += "<span>" + dto.id + "</span> ";
+        dto_el.innerHTML += "<span>" + dto.role + "</span> ";
+        dto_el.innerHTML += "<span>" + dto.name + "</span> ";
+        dto_el.innerHTML += "<span>" + dto.addr + "</span>";
+        dto_el.innerHTML += "<span>" + dto.phone + "</span><br/>";
+        showBlock_el.appendChild(dto_el);
+        
+      });
     })
     .catch(error => {
-        console.log("조회 실패..");
+      console.log("조회 실패..");
     });
 });
+
+
+
 </script>
 	
 
