@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import Domain1.Dto.MemberDto;
 
@@ -40,6 +41,12 @@ public interface MemberService {
 	String getRole(String sid);
 
 	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
+
+	boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	
 
 
 

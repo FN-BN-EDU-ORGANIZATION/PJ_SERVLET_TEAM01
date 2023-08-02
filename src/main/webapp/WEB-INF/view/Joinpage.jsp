@@ -40,12 +40,12 @@
                         <input id="pw_input" name="pw" type="password" placeholder="비밀번호" title="비밀번호입력" required></li>
                     <li><span>PW Check</span>
                         <!-- <span id="pw_check">*pw체크표시</span> -->
-                        <input id="pwc_input" name="pwc_input" type="password" placeholder="비밀번호확인" title="비밀번호확인" required></li>
+                        <input id="pwc_input" name="pwc" type="password" placeholder="비밀번호확인" title="비밀번호확인" required></li>
                     <li><span>NAME</span>
                         <input type="text"  name="name" placeholder="이름" title="이름입력" required></li>
                     <li><span>ADDRESS</span>
                         <input id="addr_input"  name="addr"  type="text" placeholder="주소" title="주소입력" required><button id="addr_btn">주소검색</button></li>
-                    <li><input type="text" placeholder="동/호수 입력" title="주소입력"></li>
+                    <li><input id="phone_input" type="text" placeholder="동/호수 입력" title="주소입력"></li>
                     <li><span>PHONE</span>
                         <input type="text" name="phone" placeholder="핸드폰번호" title="핸드폰번호입력" required></li>
                     <li><button id="join_btn" onclick="button_function()">JOIN!</button></li>
@@ -53,7 +53,7 @@
                 </form>
             </section>
 
-			<script>
+			<!-- <script>
 			
 			function button_function() {
 			    var id = document.getElementById("id_input").value;
@@ -79,7 +79,7 @@
 
 					
 				
-			</script>
+			</script> -->
 
 
             <footer>

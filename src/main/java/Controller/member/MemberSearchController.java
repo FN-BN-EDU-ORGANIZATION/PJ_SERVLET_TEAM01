@@ -27,7 +27,15 @@ public class MemberSearchController implements SubController{
 			String id = req.getParameter("id");
 			String role = ((ServletRequest) resp).getParameter("role")
 ;		
-			
+			if (id != null && !id.isEmpty()) {
+                role = ""; 
+            } else if (role != null && !role.isEmpty()) {
+                id = ""; 
+            } else {
+                System.out.println("id 또는 sid를 입력해주세요.");
+                resp.sendRedirect(req.getContextPath() + "/mypage.do");
+                return;
+            }
 			
 //		    MemberDao memberDao = MemberDaoImpl.getInstance();
 		    MemberDto result = service.memberSearchOne(id,role);
