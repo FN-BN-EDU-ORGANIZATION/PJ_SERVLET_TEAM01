@@ -132,12 +132,12 @@
                     </div>
                 </aside>
                 <article>워터멜론에서 즐거운 음악감상하세요!
-                    <a href=<c:url value="/login.do" />>로그인</a>
+                    <a href="${pageContext.request.contextPath}/login.do" />로그인</a>
                     <h4></h4>
                     <a href="">아이디</a>
                     <span>/</span>
                     <a href="">비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    <a href=<c:url value="/join.do" />>회원가입</a>
+                    <a href=<c:url value="/member/add.do" />>회원가입</a>
                 </article>
             </section>
             <section class="section2">

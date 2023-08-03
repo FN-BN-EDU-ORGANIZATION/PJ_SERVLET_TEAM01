@@ -1,11 +1,12 @@
 package Domain1.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Domain1.Dao.MemberDao;
@@ -44,19 +45,26 @@ public class MemberServiceImpl implements MemberService {
 
 		//회원 조회하기(전체조회) - 사서
 		@Override
-		public List<MemberDto> memberSearch(String sid) throws Exception {
-			String role = this.getRole(sid);
-			if (role.equals("ROLE_MANAGER"))
-				return dao.select();
-			return null;
+		public List<MemberDto> memberSearch(HttpServletRequest req) throws Exception{
+//		HttpSession session = req.getSession();
+		List<MemberDto> list = dao.select();
+		
+		List<MemberDto> roleUserMembers = new ArrayList<>();
+		for (MemberDto memberdto : list) {
+		    if ("ROLE_USER".equals(memberdto.getRole())) {
+		    	roleUserMembers.add(memberdto);
+		    }
 		}
-		//회원 조회하기(한명) - 사서
+		return roleUserMembers;
+	}
+		//회원 조회하기(한명) - 멤버
 		@Override
-		public MemberDto memberSearchOne(String role, String id) throws Exception {
-			if (role.equals("ROLE_MANAGER"))
-				return dao.select(id);
-			return null;
+		public MemberDto memberSearchOne(HttpServletRequest req) throws Exception {
+			String id = (String) req.getParameter("id");
+			MemberDto userInfo = dao.select(id);
+			return userInfo;
 		}
+		
 		//회원 조회하기(한 회원) - 로그인한 회원만
 		@Override
 		public MemberDto memberSearch(String id, String sid) throws Exception {
@@ -75,16 +83,21 @@ public class MemberServiceImpl implements MemberService {
 		}
 		//회원 삭제하기
 		@Override
-		public boolean memberDelete(String id, String sid) throws Exception {
-
-			Session session = sessionMap.get(sid);
-			if (session != null && session.getId().equals(id)) {
+		
+		
+		public boolean memberDelete(HttpServletRequest req) throws Exception{
+			
+			String id = req.getParameter("id");
+			if(req!=null && req.getParameter("id").equals(id))
+			{
 				int result = dao.delete(id);
-				if (result > 0)
-					return true;
+				if(result>0)
+					return true;			
 			}
 			return false;
 		}
+		
+		
 		//로그인
 		@Override
 		public boolean login(HttpServletRequest req) throws Exception {
@@ -146,6 +159,32 @@ public class MemberServiceImpl implements MemberService {
 				return session.getRole();
 
 			return null;
+		}
+		
+		 // pw와 pwCheck가 일치하는지 검사 (클라이언트 측에서도 검사 가능하지만, 서버에서도 추가 검사를 수행하는 것이 좋음)
+		@Override
+		public boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			String pwCheck = req.getParameter("pwc");
+		    String pw = req.getParameter("pw");
+		    if (!pw.equals(pwCheck)) {
+		        System.out.println("비밀번호 확인이 일치하지 않습니다.");
+		        resp.sendRedirect(req.getContextPath() + "/join.do");		        
+		    }
+		    return false;
+		}
+		
+		@Override
+		public boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+			String phone = req.getParameter("phone");
+			String phoneRegex = "^\\d{3}-\\d{3,4}-\\d{4}$";
+			boolean isPhoneValid = Pattern.matches(phoneRegex, phone);
+			if (!isPhoneValid) {
+			
+			    System.out.println("전화번호 형식이 올바르지 않습니다. (000-0000-0000 형식으로 입력하세요.)");
+			    resp.sendRedirect(req.getContextPath() + "/join.do");
+			    return false;
+			  }
+			return isPhoneValid;
 		}
 	
 }

@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controller.member.JoinController;
 import Controller.member.MemberAddController;
+import Controller.member.MemberAllSearchController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
 import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
+import Controller.member.auth.IdcheckController;
 import Controller.member.auth.LoginController;
 import Controller.member.auth.LogoutController;
 import Controller.music.MusicOpenurlController;
@@ -31,17 +32,18 @@ public class FrontController extends HttpServlet{
 		String projectPath = config.getServletContext().getContextPath();	// /JAVA_TO_SERVLET/
 		
 		//member
+		map.put(projectPath + "/member/allsearch.do", new MemberAllSearchController());
 		map.put(projectPath + "/member/search.do", new MemberSearchController());
 		map.put(projectPath + "/member/add.do", new MemberAddController());
 		map.put(projectPath + "/member/update.do", new MemberUpdateController());
 		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 		
-		// join
-		map.put(projectPath + "/join.do", new JoinController());
+		
 	
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		
 		map.put(projectPath+"/logout.do", new LogoutController());
+		map.put(projectPath + "/checkDuplicateId.do", new IdcheckController());
 	
 		//index
 		map.put(projectPath+"/index.do", new IndexController());
