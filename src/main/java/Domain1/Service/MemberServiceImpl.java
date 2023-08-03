@@ -82,10 +82,10 @@ public class MemberServiceImpl implements MemberService {
 		}
 		//회원 삭제하기
 		@Override
-		public boolean memberDelete(String id, String sid) throws Exception{
+		public boolean memberDelete(HttpServletRequest req) throws Exception{
 			
-			Session session = sessionMap.get(sid);
-			if(session!=null && session.getId().equals(id))
+			String id = req.getParameter("id");
+			if(req!=null && req.getParameter("id").equals(id))
 			{
 				int result = dao.delete(id);
 				if(result>0)

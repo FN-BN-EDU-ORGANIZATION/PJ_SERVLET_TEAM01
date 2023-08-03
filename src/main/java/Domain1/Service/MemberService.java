@@ -26,7 +26,7 @@ public interface MemberService {
 	boolean memberUpdate(HttpServletRequest req) throws Exception;
 
 	//회원 삭제하기
-	boolean memberDelete(String id, String sid) throws Exception;
+	boolean memberDelete(HttpServletRequest req) throws Exception;
 
 	//로그인
 	boolean login(HttpServletRequest req) throws Exception;
@@ -45,6 +45,8 @@ public interface MemberService {
 	boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
 	boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	
 
 	
 
