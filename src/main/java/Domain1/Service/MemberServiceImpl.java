@@ -37,13 +37,43 @@ public class MemberServiceImpl implements MemberService {
 			sessionMap = new HashMap();
 			memberSearchHistoryMap = new HashMap<>();
 		}
+		@Override
+		public boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			String pwCheck = req.getParameter("pwc");
+		    String pw = req.getParameter("pw");
+		    if (!pw.equals(pwCheck)) {
+		        System.out.println("비밀번호 확인이 일치하지 않습니다.");
+//		        resp.sendRedirect(req.getContextPath() + "/join.do");	
+		        return true;
+		    }
+		    return false;
+		}
+		
+		@Override
+		public boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+			String phone = req.getParameter("phone");
+			String phoneRegex = "^\\d{3}-\\d{3,4}-\\d{4}$";
+			boolean isPhoneValid = Pattern.matches(phoneRegex, phone);
+			if (isPhoneValid) {
+				return true;
+			  }
+			System.out.println("전화번호 형식이 올바르지 않습니다. (000-0000-0000 형식으로 입력하세요.)");
+//		    resp.sendRedirect(req.getContextPath() + "/join.do");
+		    return false;
+		}
 		//회원 가입하기
 		@Override
-		public boolean memberJoin(MemberDto dto) throws Exception{
-			int result = dao.insert(dto);
-			if(result>0)
-				return true;
-			return false;
+		public boolean memberJoin(HttpServletRequest req, HttpServletResponse resp, MemberDto dto) throws Exception{
+            
+			boolean pw = pwCheck(req,resp);
+		    boolean phone = isPhoneValid(req,resp);
+
+		    if (pw && phone) {
+		        int result = dao.insert(dto);
+		        return result>0;
+		    }
+
+		    return false;
 		}
 		//회원 조회하기(전체조회) - 사서
 		@Override
@@ -166,30 +196,31 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
         // pw와 pwCheck가 일치하는지 검사 (클라이언트 측에서도 검사 가능하지만, 서버에서도 추가 검사를 수행하는 것이 좋음)
-		@Override
-		public boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-			String pwCheck = req.getParameter("pwc");
-		    String pw = req.getParameter("pw");
-		    if (!pw.equals(pwCheck)) {
-		        System.out.println("비밀번호 확인이 일치하지 않습니다.");
-		        resp.sendRedirect(req.getContextPath() + "/join.do");		        
-		    }
-		    return false;
-		}
-		
-		@Override
-		public boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-			String phone = req.getParameter("phone");
-			String phoneRegex = "^\\d{3}-\\d{3,4}-\\d{4}$";
-			boolean isPhoneValid = Pattern.matches(phoneRegex, phone);
-			if (!isPhoneValid) {
-			
-			    System.out.println("전화번호 형식이 올바르지 않습니다. (000-0000-0000 형식으로 입력하세요.)");
-			    resp.sendRedirect(req.getContextPath() + "/join.do");
-			    return false;
-			  }
-			return isPhoneValid;
-		}
+//		@Override
+//		public boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+//			String pwCheck = req.getParameter("pwc");
+//		    String pw = req.getParameter("pw");
+//		    if (!pw.equals(pwCheck)) {
+//		        System.out.println("비밀번호 확인이 일치하지 않습니다.");
+////		        resp.sendRedirect(req.getContextPath() + "/join.do");	
+//		        return true;
+//		    }
+//		    return false;
+//		}
+//		
+//		@Override
+//		public boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+//			String phone = req.getParameter("phone");
+//			String phoneRegex = "^\\d{3}-\\d{3,4}-\\d{4}$";
+//			boolean isPhoneValid = Pattern.matches(phoneRegex, phone);
+//			if (!isPhoneValid) {
+//			
+//			    System.out.println("전화번호 형식이 올바르지 않습니다. (000-0000-0000 형식으로 입력하세요.)");
+////			    resp.sendRedirect(req.getContextPath() + "/join.do");
+//			    return false;
+//			  }
+//			return isPhoneValid;
+//		}
       
 //        String pwCheck = req.getParameter("pwc_input");
 //        if (!pw.equals(pwCheck)) {

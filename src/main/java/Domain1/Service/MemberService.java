@@ -11,8 +11,7 @@ import Domain1.Dto.MemberDto;
 public interface MemberService {
 
 	//회원 가입하기
-	boolean memberJoin(MemberDto dto) throws Exception;
-
+	boolean memberJoin(HttpServletRequest req, HttpServletResponse resp, MemberDto dto) throws Exception;
 	//회원 조회하기(전체조회) - 사서
 	List<MemberDto> memberSearch(String sid) throws Exception;
 
@@ -41,10 +40,12 @@ public interface MemberService {
 	String getRole(String sid);
 
 	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
-
 	boolean pwCheck(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
+
 	boolean isPhoneValid(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	
 
 	
 

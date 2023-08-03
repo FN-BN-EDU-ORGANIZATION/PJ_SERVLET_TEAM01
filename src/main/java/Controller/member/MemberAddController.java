@@ -52,7 +52,9 @@ public class MemberAddController implements SubController{
             boolean phoneresult = service.isPhoneValid(req,resp);
             System.out.println("phone : " + phone);
             
-            if(pwresult && phoneresult) {
+            
+            
+            
 	            MemberDto memberDto = new MemberDto();
 	            memberDto.setId(id);
 	            memberDto.setPw(pw);
@@ -61,7 +63,9 @@ public class MemberAddController implements SubController{
 	            memberDto.setPhone(phone);
 	            memberDto.setRole(role);
 	//            MemberDao memberDao = MemberDaoImpl.getInstance();
-	            boolean result = service.memberJoin(memberDto);
+	            
+	           
+	            boolean result = service.memberJoin(req, resp, memberDto);
 	//            System.out.println("pw"+pw);
 	            if (result) {
 	                HttpSession session = req.getSession();
@@ -69,18 +73,15 @@ public class MemberAddController implements SubController{
 	                System.out.println("삽입 완료 ID: " + id);
 	                resp.sendRedirect(req.getContextPath() + "/index.do");
 	                resp.setContentType("text/plain");
-	                resp.getWriter().write("true");
-	                System.out.println("이상하다 왜 안될까?");
-	                
-	                
-	                
+	                resp.getWriter().write("true");	           	                	                	                
 	            } else {
 	                System.out.println("회원 삽입 실패.");
 	                resp.sendRedirect(req.getContextPath() + "/join.do");	
 	                resp.setContentType("text/plain");
 	                resp.getWriter().write("false");
 	            }
-           }
+            
+           
         } catch (Exception e) {
             e.printStackTrace();
         }
