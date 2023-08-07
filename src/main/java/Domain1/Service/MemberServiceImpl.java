@@ -64,15 +64,17 @@ public class MemberServiceImpl implements MemberService {
 		//회원 가입하기
 		@Override
 		public boolean memberJoin(HttpServletRequest req, HttpServletResponse resp, MemberDto dto) throws Exception{
-            
+           
 			boolean pw = pwCheck(req,resp);
+			System.out.println("폰 : " );
 		    boolean phone = isPhoneValid(req,resp);
-
+			System.out.println("전화");
 		    if (pw && phone) {
 		        int result = dao.insert(dto);
+		        System.out.println("왜 될까?");
 		        return result>0;
 		    }
-
+		    System.out.println("안된다");
 		    return false;
 		}
 		//회원 조회하기(전체조회) - 사서
